@@ -644,6 +644,7 @@ main[data-v-51992d94] {
 .info[data-v-51992d94] {
   grid-column: span 2;
   margin: 0 auto;
+  width: 100%;
   max-width: 85rem;
   padding: 0 0rem;
   position: relative;
