@@ -23,6 +23,9 @@ window.runIntro = function () {
 
   // remove after 2 seconds
   setTimeout(() => {
+    window.__INTRO_ACTIVE__ = false;
     intro.remove();
   }, 2000);
+
+  
 };

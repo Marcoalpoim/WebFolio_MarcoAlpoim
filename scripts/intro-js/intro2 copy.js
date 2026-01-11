@@ -1,5 +1,5 @@
 
-
+window.runIntro = function () {
 (window.webpackJsonp=window.webpackJsonp||[]).push([[15,2,3,5,6,7,8,9,12,13],{
     
     362:function(t,e,r){"use strict";var n=r(2),o=r(365);n({target:"String",proto:!0,forced:r(366)("link")},{link:function(t){return o(this,"a","href",t)}})},
@@ -44,4 +44,13 @@ n.locals={},t.exports=n},407:function(t,e,r){var content=r(424);content.__esModu
                 function(){return(0,this._self._c)("div",{staticClass:"paragraph"},[this._t("content")],2)}),[],!1,null,"26373738",null);e.default=component.exports},417:function(t,e,r){"use strict";r.r(e);r(394);var n=r(19),component=Object(n.a)({},(function(){return(0,this._self._c)("div",{staticClass:"title"},[this._t("content")],2)}),[],!1,null,"0afff8e6",null);e.default=component.exports},423:function(t,e,r){"use strict";r(407)},424:function(t,e,r){var n=r(51)((function(i){return i[1]}));n.push([t.i,".index[data-v-3ff7eb1f]{height:100%;padding-top:var(--safe-area-inset-top);width:100%}.index[visible] footer[data-v-3ff7eb1f]{padding:var(--padding) calc(var(--padding) + var(--safe-area-inset-right)) var(--padding) calc(var(--padding) + var(--safe-area-inset-left))}",""]),n.locals={},t.exports=n},450:function(t,e,r){"use strict";r.r(e);r(362);var n=r(5),o=(r(40),r(20),r(6),r(16),r(28),r(61),r(389)),c={name:"home",transition:{name:"page",mode:"out-in"},head:function(){return{title:"Marco Alpoim | ".concat(this.route),htmlAttrs:{lang:"en",amp:!0}}},data:function(){return{intersectRouteReplace:!1}},asyncData:function(t){return Object(n.a)(regeneratorRuntime.mark((function e(){var r,n,c,l;return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return r=t.$content,n=t.store,e.next=3,r("index").only(["modules"]).fetch();case 3:return c=e.sent,(l=(l=c.modules).filter((function(t){return"project"!==t.type||n.state.projects.some((function(p){return p.slug===t.relation}))}))).forEach((function(t,i){if("project"===t.type)Object.assign(t,n.getters.getProjectBySlug(t.relation));else{var e=3;switch(t.size){case"s":e=1;break;case"l":e=2;break;case"f":e=3}Object.assign(t,{cols:e})}})),l.reduce(o.a,0),e.abrupt("return",{modules:l});case 9:case"end":return e.stop()}}),e)})))()},computed:{visible:function(){return this.$store.state.ready},route:function(){return this.$route.params.id||"home"}},watch:{"$route.params.id":"handleRoute"},methods:{handleRoute:function(t,e,r){if(this.intersectRouteReplace)this.intersectRouteReplace=!1;else{var n=this.$store.state.menuVisible||r?"instant":"smooth";if(t){var o=this.$refs.about[0].$el.getBoundingClientRect().top-100;window.scrollBy({top:o,behavior:n})}else window.scrollTo({top:0,behavior:n})}},handleAboutIntersect:function(t){var path=t.isIntersecting||t.boundingClientRect.top<0?"/about":"/";path!==this.$route.path&&(this.intersectRouteReplace=!0,this.$router.replace({path:path}))}},mounted:function(){this.handleRoute(this.$route.params.id,"",!0),this.$intersectionObserver.observe(this.$refs.about[0].$el,this.handleAboutIntersect)},beforeDestroy:function(){this.$intersectionObserver.unobserve(this.$refs.about[0].$el)}},l=(r(423),r(19)),component=Object(l.a)(
                 c,(function(){
                 
-                var t=this,e=t._self._c;return e("div",[e("Intro",{attrs:{active:t.visible}}),t._v(" "),t._v(" ")],1)}),!1,null,"3ff7eb1f",null);e.default=component.exports;installComponents(component,{Intro:r(413).default,Card:r(369).default,Quote:r(388).default,Paragraph:r(416).default,Title:r(417).default,Wip:r(414).default,Recognition:r(415).default,Footer:r(177).default})}}]);
+                var t=this,e=t._self._c;return e("div",[e("Intro",{attrs:{active:t.visible}}),t._v(" "),t._v(" ")],1)}),!1,null,"3ff7eb1f",null);e.default=component.exports;
+                installComponents(component,{
+                    
+                    Intro:r(413).default,
+                    Card:r(369).default,
+                    Quote:r(388).default,
+                    Paragraph:r(416).default,
+                    Title:r(417).default,Wip:r(414).default,Recognition:r(415).default,Footer:r(177).default})}}]);
+
+                };
