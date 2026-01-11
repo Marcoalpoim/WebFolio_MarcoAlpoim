@@ -11,25 +11,33 @@ window.addEventListener("load", () => {
 
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
-  const loadIntroBundle = () => {
-    const oldScript = document.getElementById("intro-bundle");
-    if (oldScript) oldScript.remove();
+ const loadIntroBundle = () => {
+  // Remove old script
+  const oldScript = document.getElementById("intro-bundle");
+  if (oldScript) oldScript.remove();
 
-    const script = document.createElement("script");
-    script.id = "intro-bundle";
+  // Create script
+  const script = document.createElement("script");
+  script.id = "intro-bundle";
 
-    // 🔥 RELATIVE PATH — WORKS EVERYWHERE
-    script.src = "scripts/intro-js/intro2.js?v=" + Date.now();
+  // 🔥 Force re-evaluation every time
+  script.src = "scripts/intro-js/intro2.js?ts=" + performance.now();
 
+  // 🔥 Delay execution so intro2 thinks page just loaded
+  setTimeout(() => {
     document.body.appendChild(script);
-  };
+  }, 50);
+};
 
+
+  // 🔁 RETURN VISIT
   if (hasPlayed) {
     if (preloader) preloader.remove();
     loadIntroBundle();
     return;
   }
 
+  // 🟢 FIRST VISIT
   sessionStorage.setItem("introPlayed", "true");
 
   if (!preloader) {
@@ -46,16 +54,13 @@ window.addEventListener("load", () => {
     preloader.style.transform = "translateY(-100vh)";
     preloader.style.pointerEvents = "none";
 
-    setTimeout(() => {
-      loadIntroBundle();
-    }, EXIT_DURATION - SCRIPT_OFFSET);
+    setTimeout(loadIntroBundle, EXIT_DURATION - SCRIPT_OFFSET);
 
     setTimeout(() => {
       preloader.remove();
     }, EXIT_DURATION);
   }, DELAY_BEFORE_EXIT);
 });
-
 
 
 $(function () {
