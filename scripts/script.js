@@ -17,21 +17,24 @@ window.onbeforeunload = function () {
 
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
-  // helper: load intro bundle ONCE
   const loadIntroBundle = () => {
-    if (document.getElementById("intro-bundle")) return;
+    // 🔥 REMOVE any previous intro script
+    const oldScript = document.getElementById("intro-bundle");
+    if (oldScript) oldScript.remove();
 
     const script = document.createElement("script");
     script.id = "intro-bundle";
-    script.src = `${basePath}/scripts/intro-js/intro2.js`;
-    script.defer = true;
+
+    // 🔥 FORCE re-execution
+    script.src = `${basePath}/scripts/intro-js/intro2.js?v=${Date.now()}`;
 
     document.body.appendChild(script);
   };
 
-  // 🔁 RETURN VISIT → NO LOADER, NO INTRO RELOAD
+  // 🔁 RETURN VISIT → skip loader, run intro immediately
   if (hasPlayed) {
     if (preloader) preloader.remove();
+    loadIntroBundle();
     return;
   }
 
@@ -43,24 +46,19 @@ window.onbeforeunload = function () {
     return;
   }
 
-  // initial loader state
   preloader.style.transform = "translateY(0)";
   preloader.style.transition = `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
 
-  // force reflow
   preloader.offsetHeight;
 
-  // delay before loader exits
   setTimeout(() => {
     preloader.style.transform = "translateY(-100vh)";
     preloader.style.pointerEvents = "none";
 
-    // 🔥 load intro BEFORE loader finishes
     setTimeout(() => {
       loadIntroBundle();
     }, EXIT_DURATION - SCRIPT_OFFSET);
 
-    // remove loader AFTER exit
     setTimeout(() => {
       preloader.remove();
     }, EXIT_DURATION);
