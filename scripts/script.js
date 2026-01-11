@@ -14,17 +14,16 @@ window.addEventListener("load", () => {
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
   // 🔁 RETURN VISIT → NO LOADER, INTRO IMMEDIATE
- if (hasPlayed) {
-    if (preloader) preloader.remove();
-
+if (hasPlayed) {
+  if (preloader) preloader.remove();
+  
+  setTimeout(() => {
     const script = document.createElement("script");
     script.src = "./scripts/intro-js/intro2.js";
-    
-    script.onload = () => console.log("✅ intro2.js loaded successfully");
-    script.onerror = (e) => console.error("❌ intro2.js failed to load. Check path/case sensitivity.", e);
-
     document.body.appendChild(script);
-    return;
+  }, 200); // 200ms "breathing room" for the browser
+  
+  return;
 }
 
   // 🟢 FIRST VISIT
