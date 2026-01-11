@@ -2,41 +2,52 @@ window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
 
-window.addEventListener("load", () => {
-
+ window.addEventListener("load", () => {
   const isGitHubPages = location.hostname.includes("github.io");
 
-const basePath = isGitHubPages
-  ? "/WebFolio_MarcoAlpoim"
-  : "";
+  const basePath = isGitHubPages
+    ? "/WebFolio_MarcoAlpoim"
+    : "";
+
   const preloader = document.getElementById("preloader");
 
   const DELAY_BEFORE_EXIT = 5000;
   const EXIT_DURATION = 1700;
-  const SCRIPT_OFFSET = 1000; // 1s before end
+  const SCRIPT_OFFSET = 1000;
 
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
-  // 🔁 RETURN VISIT → NO LOADER, INTRO IMMEDIATE
-  if (hasPlayed) {
-    if (preloader) preloader.remove();
+  // helper: load intro bundle ONCE
+  const loadIntroBundle = () => {
+    if (document.getElementById("intro-bundle")) return;
 
-    // 🔥 intro runs immediately
     const script = document.createElement("script");
+    script.id = "intro-bundle";
     script.src = `${basePath}/scripts/intro-js/intro2.js`;
     script.defer = true;
-    document.body.appendChild(script);
 
+    document.body.appendChild(script);
+  };
+
+  // 🔁 RETURN VISIT → NO LOADER, NO INTRO RELOAD
+  if (hasPlayed) {
+    if (preloader) preloader.remove();
     return;
   }
 
   // 🟢 FIRST VISIT
   sessionStorage.setItem("introPlayed", "true");
 
+  if (!preloader) {
+    loadIntroBundle();
+    return;
+  }
+
   // initial loader state
   preloader.style.transform = "translateY(0)";
   preloader.style.transition = `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
 
+  // force reflow
   preloader.offsetHeight;
 
   // delay before loader exits
@@ -44,12 +55,9 @@ const basePath = isGitHubPages
     preloader.style.transform = "translateY(-100vh)";
     preloader.style.pointerEvents = "none";
 
-    // 🔥 intro starts BEFORE loader ends
+    // 🔥 load intro BEFORE loader finishes
     setTimeout(() => {
-      const script = document.createElement("script");
-      script.src = `${basePath}/scripts/intro-js/intro2.js`;
-      script.defer = true;
-      document.body.appendChild(script);
+      loadIntroBundle();
     }, EXIT_DURATION - SCRIPT_OFFSET);
 
     // remove loader AFTER exit
@@ -58,6 +66,8 @@ const basePath = isGitHubPages
     }, EXIT_DURATION);
   }, DELAY_BEFORE_EXIT);
 });
+
+
 
 $(function () {
   //helpers
