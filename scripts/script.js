@@ -17,17 +17,23 @@ window.addEventListener("load", () => {
 if (hasPlayed) {
   if (preloader) preloader.remove();
 
-  // Wait for the main Webpack bundle to be ready
-  const checkWebpack = setInterval(() => {
-    if (window.webpackJsonp) {
-      clearInterval(checkWebpack);
-      
-      const script = document.createElement("script");
-      script.src = "./scripts/intro-js/intro2.js";
-      // Remove defer; let it execute immediately now that we know Webpack is there
-      document.body.appendChild(script);
-    }
-  }, 50); // Check every 50ms
+  const runIntro = () => {
+    const script = document.createElement("script");
+    // The "?v=" adds a unique timestamp so GitHub doesn't serve a cached version
+    script.src = "./scripts/intro-js/intro2.js?v=" + Date.now();
+    script.type = "text/javascript";
+    
+    script.onload = () => {
+      // Manually trigger a resize or scroll event
+      // This often "wakes up" Webpack-based animations 
+      window.dispatchEvent(new Event('resize'));
+    };
+
+    document.head.appendChild(script); 
+  };
+
+  // Give the browser 100ms to clear the preloader from memory
+  setTimeout(runIntro, 100);
 
   return;
 }
