@@ -16,17 +16,29 @@ window.addEventListener("load", () => {
 
   // 🔥 load + run intro
   const loadIntroBundle = () => {
-    const script = document.createElement("script");
-    script.src = "scripts/intro-js/intro2.js?v=" + Date.now();
+  // 🔒 lock UI ONLY when intro is about to run
+  window.__INTRO_ACTIVE__ = true;
 
-    script.onload = () => {
-      if (window.runIntro) {
-        window.runIntro();
-      }
-    };
+  const script = document.createElement("script");
+  script.src = "scripts/intro-js/intro2.js?v=" + Date.now();
 
-    document.body.appendChild(script);
+  script.onload = () => {
+    if (window.runIntro) {
+      window.runIntro(() => {
+        // 🔓 unlock UI AFTER intro finishes
+        window.__INTRO_ACTIVE__ = false;
+        initUI(); // 👈 INIT UI HERE (IMPORTANT)
+      });
+    } else {
+      // fallback safety
+      window.__INTRO_ACTIVE__ = false;
+      initUI();
+    }
   };
+
+  document.body.appendChild(script);
+};
+
 
   // 🔁 RETURN VISIT
   if (hasPlayed) {
@@ -62,22 +74,7 @@ window.addEventListener("load", () => {
   }, DELAY_BEFORE_EXIT);
 });
 
-/* ======================================================
-   ⏳ WAIT UNTIL INTRO FINISHES BEFORE UI INIT
-====================================================== */
-
-const waitForIntro = () => {
-  if (window.__INTRO_ACTIVE__) {
-    requestAnimationFrame(waitForIntro);
-    return;
-  }
-
-  // ✅ SAFE TO INIT UI NOW
-  initUI();
-};
-
-waitForIntro();
-
+ 
 /* ======================================================
    UI + INTERACTIONS (UNCHANGED, JUST WRAPPED)
 ====================================================== */

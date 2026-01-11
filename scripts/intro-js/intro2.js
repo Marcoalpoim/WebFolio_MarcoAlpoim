@@ -1,4 +1,4 @@
-window.runIntro = function () {
+window.runIntro = function (done) {
     console.log("INTRO2 booting");
 
     // 🔥 RESET webpack chunk registry so it can re-run
@@ -1372,9 +1372,9 @@ window.runIntro = function () {
     })();
 
 
-      setTimeout(() => {
-    window.__INTRO_ACTIVE__ = false; // 🔓 UNLOCK UI
-  }, 2000); // match your intro duration
+  setTimeout(() => {
+    if (typeof done === "function") done();
+  }, 2000); // match intro duration
 };
  
 
