@@ -17,7 +17,7 @@ window.addEventListener("load", () => {
 
     // 🔥 intro runs immediately
     const script = document.createElement("script");
-    script.src = "./scripts/intro-js/intro2.js";
+    script.src = "../../scripts/intro-js/intro2.js";
     script.defer = true;
     document.body.appendChild(script);
 

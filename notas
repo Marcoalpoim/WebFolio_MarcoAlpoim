@@ -1,0 +1,9 @@
+git init
+
+git status
+
+git add -A
+
+ git commit -m "Fix CSS paths for GitHub Pages"
+
+ git push 
