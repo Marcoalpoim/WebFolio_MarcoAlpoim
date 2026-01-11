@@ -16,13 +16,19 @@ window.addEventListener("load", () => {
   // 🔁 RETURN VISIT → NO LOADER, INTRO IMMEDIATE
 if (hasPlayed) {
   if (preloader) preloader.remove();
-  
-  setTimeout(() => {
-    const script = document.createElement("script");
-    script.src = "./scripts/intro-js/intro2.js";
-    document.body.appendChild(script);
-  }, 200); // 200ms "breathing room" for the browser
-  
+
+  // Wait for the main Webpack bundle to be ready
+  const checkWebpack = setInterval(() => {
+    if (window.webpackJsonp) {
+      clearInterval(checkWebpack);
+      
+      const script = document.createElement("script");
+      script.src = "./scripts/intro-js/intro2.js";
+      // Remove defer; let it execute immediately now that we know Webpack is there
+      document.body.appendChild(script);
+    }
+  }, 50); // Check every 50ms
+
   return;
 }
 
