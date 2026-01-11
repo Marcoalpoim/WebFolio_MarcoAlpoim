@@ -5,80 +5,58 @@ window.onbeforeunload = function () {
 };
 
 window.addEventListener("load", () => {
-  // 🔁 FORCE INTRO TO REPLAY (FIX FOR GITHUB)
-  sessionStorage.removeItem("introPlayed");
-
   const preloader = document.getElementById("preloader");
 
   const DELAY_BEFORE_EXIT = 5000;
   const EXIT_DURATION = 1700;
-  const SCRIPT_OFFSET = 1000;
+  const SCRIPT_OFFSET = 1000; // 1s before end
 
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
-  // 🔥 load + run intro
-  const loadIntroBundle = () => {
-    const script = document.createElement("script");
-    script.src = "scripts/intro-js/intro2.js?v=" + Date.now();
+  // 🔁 RETURN VISIT → NO LOADER, INTRO IMMEDIATE
+ if (hasPlayed) {
+    if (preloader) preloader.remove();
 
-    script.onload = () => {
-      if (window.runIntro) {
-        window.runIntro();
-      }
-    };
+    const script = document.createElement("script");
+    script.src = "./scripts/intro-js/intro2.js";
+    
+    script.onload = () => console.log("✅ intro2.js loaded successfully");
+    script.onerror = (e) => console.error("❌ intro2.js failed to load. Check path/case sensitivity.", e);
 
     document.body.appendChild(script);
-  };
-
-  // 🔁 RETURN VISIT
-  if (hasPlayed) {
-    if (preloader) preloader.remove();
-    loadIntroBundle();
     return;
-  }
+}
 
   // 🟢 FIRST VISIT
   sessionStorage.setItem("introPlayed", "true");
 
-  if (!preloader) {
-    loadIntroBundle();
-    return;
-  }
-
-  // preloader animation
+  // initial loader state
   preloader.style.transform = "translateY(0)";
-  preloader.style.transition = `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
+  preloader.style.transition =
+    `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
 
   preloader.offsetHeight;
 
+  // delay before loader exits
   setTimeout(() => {
     preloader.style.transform = "translateY(-100vh)";
     preloader.style.pointerEvents = "none";
 
-    // 🔥 start intro before loader fully exits
-    setTimeout(loadIntroBundle, EXIT_DURATION - SCRIPT_OFFSET);
+    // 🔥 intro starts BEFORE loader ends
+    setTimeout(() => {
+      const script = document.createElement("script");
+      script.src = "./scripts/intro-js/intro2.js";
+      script.defer = true;
+      document.body.appendChild(script);
+    }, EXIT_DURATION - SCRIPT_OFFSET);
 
+    // remove loader AFTER exit
     setTimeout(() => {
       preloader.remove();
     }, EXIT_DURATION);
+
   }, DELAY_BEFORE_EXIT);
 });
-
-/* ======================================================
-   ⏳ WAIT UNTIL INTRO FINISHES BEFORE UI INIT
-====================================================== */
-
-const waitForIntro = () => {
-  if (window.__INTRO_ACTIVE__) {
-    requestAnimationFrame(waitForIntro);
-    return;
-  }
-
-  // ✅ SAFE TO INIT UI NOW
-  initUI();
-};
-
-waitForIntro();
 
 
 $(function () {
