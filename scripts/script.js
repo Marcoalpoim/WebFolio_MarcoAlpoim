@@ -2,13 +2,7 @@ window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
 
- window.addEventListener("load", () => {
-  const isGitHubPages = location.hostname.includes("github.io");
-
-  const basePath = isGitHubPages
-    ? "/WebFolio_MarcoAlpoim"
-    : "";
-
+window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
 
   const DELAY_BEFORE_EXIT = 5000;
@@ -18,27 +12,24 @@ window.onbeforeunload = function () {
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
   const loadIntroBundle = () => {
-    // 🔥 REMOVE any previous intro script
     const oldScript = document.getElementById("intro-bundle");
     if (oldScript) oldScript.remove();
 
     const script = document.createElement("script");
     script.id = "intro-bundle";
 
-    // 🔥 FORCE re-execution
-    script.src = `${basePath}/scripts/intro-js/intro2.js?v=${Date.now()}`;
+    // 🔥 RELATIVE PATH — WORKS EVERYWHERE
+    script.src = "scripts/intro-js/intro2.js?v=" + Date.now();
 
     document.body.appendChild(script);
   };
 
-  // 🔁 RETURN VISIT → skip loader, run intro immediately
   if (hasPlayed) {
     if (preloader) preloader.remove();
     loadIntroBundle();
     return;
   }
 
-  // 🟢 FIRST VISIT
   sessionStorage.setItem("introPlayed", "true");
 
   if (!preloader) {
