@@ -12,22 +12,18 @@ window.addEventListener("load", () => {
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
  const loadIntroBundle = () => {
-  // Remove old script
-  const oldScript = document.getElementById("intro-bundle");
-  if (oldScript) oldScript.remove();
-
-  // Create script
   const script = document.createElement("script");
-  script.id = "intro-bundle";
+  script.src = "scripts/intro-js/intro2.js?v=" + Date.now();
 
-  // 🔥 Force re-evaluation every time
-  script.src = "scripts/intro-js/intro2.js?ts=" + performance.now();
+  script.onload = () => {
+    if (window.runIntro) {
+      window.runIntro();
+    }
+  };
 
-  // 🔥 Delay execution so intro2 thinks page just loaded
-  setTimeout(() => {
-    document.body.appendChild(script);
-  }, 50);
+  document.body.appendChild(script);
 };
+
 
 
   // 🔁 RETURN VISIT
