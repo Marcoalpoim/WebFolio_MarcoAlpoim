@@ -4,71 +4,43 @@ window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 };
 
-window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
+// 1. Check immediately if they've seen it
+const hasPlayed = sessionStorage.getItem("introPlayed");
+const preloader = document.getElementById("preloader");
 
-  const DELAY_BEFORE_EXIT = 5000;
-  const EXIT_DURATION = 1700;
-  const SCRIPT_OFFSET = 1000; // 1s before end
-
-  const hasPlayed = sessionStorage.getItem("introPlayed");
-
-  // 🔁 RETURN VISIT → NO LOADER, INTRO IMMEDIATE
 if (hasPlayed) {
-  if (preloader) preloader.remove();
-
-  const runIntro = () => {
-    const script = document.createElement("script");
-    // The "?v=" adds a unique timestamp so GitHub doesn't serve a cached version
-    script.src = "./scripts/intro-js/intro2.js?v=" + Date.now();
-    script.type = "text/javascript";
-    
-    script.onload = () => {
-      // Manually trigger a resize or scroll event
-      // This often "wakes up" Webpack-based animations 
-      window.dispatchEvent(new Event('resize'));
-    };
-
-    document.head.appendChild(script); 
-  };
-
-  // Give the browser 100ms to clear the preloader from memory
-  setTimeout(runIntro, 100);
-
-  return;
-}
-
-  // 🟢 FIRST VISIT
+  // 🔁 RETURN VISIT: Kill the preloader immediately so they don't see it
+  if (preloader) {
+    preloader.style.display = "none";
+    preloader.remove();
+  }
+  // No need to create a script tag here anymore! 
+  // It's already in your HTML and will run naturally.
+} else {
+  // 🟢 FIRST VISIT: Run the animation logic
   sessionStorage.setItem("introPlayed", "true");
 
-  // initial loader state
-  preloader.style.transform = "translateY(0)";
-  preloader.style.transition =
-    `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
+  window.addEventListener("load", () => {
+    if (!preloader) return;
 
-  preloader.offsetHeight;
+    const DELAY_BEFORE_EXIT = 5000;
+    const EXIT_DURATION = 1700;
 
-  // delay before loader exits
-  setTimeout(() => {
-    preloader.style.transform = "translateY(-100vh)";
-    preloader.style.pointerEvents = "none";
+    // Set up the exit animation
+    preloader.style.transform = "translateY(0)";
+    preloader.style.transition = `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
 
-    // 🔥 intro starts BEFORE loader ends
     setTimeout(() => {
-      const script = document.createElement("script");
-      script.src = "./scripts/intro-js/intro2.js";
-      script.defer = true;
-      document.body.appendChild(script);
-    }, EXIT_DURATION - SCRIPT_OFFSET);
+      preloader.style.transform = "translateY(-100vh)";
+      preloader.style.pointerEvents = "none";
 
-    // remove loader AFTER exit
-    setTimeout(() => {
-      preloader.remove();
-    }, EXIT_DURATION);
-
-  }, DELAY_BEFORE_EXIT);
-});
-
+      // Remove from DOM after it slides away
+      setTimeout(() => {
+        preloader.remove();
+      }, EXIT_DURATION);
+    }, DELAY_BEFORE_EXIT);
+  });
+}
 
 $(function () {
   //helpers
