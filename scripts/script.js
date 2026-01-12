@@ -9,13 +9,15 @@ const hasPlayed = sessionStorage.getItem("introPlayed");
 const preloader = document.getElementById("preloader");
 
 if (hasPlayed) {
-  // 🔁 RETURN VISIT: Kill the preloader immediately so they don't see it
-  if (preloader) {
-    preloader.style.display = "none";
-    preloader.remove();
-  }
-  // No need to create a script tag here anymore! 
-  // It's already in your HTML and will run naturally.
+  // 🔁 RETURN VISIT
+    if (preloader) preloader.remove();
+    
+    // Check if we arrived here via a normal link or a refresh
+    // If we haven't 'forced' a clean load yet, do it once.
+    if (!window.location.hash.includes("loaded")) {
+        window.location.hash = "loaded";
+        window.location.reload(); 
+    }
 } else {
   // 🟢 FIRST VISIT: Run the animation logic
   sessionStorage.setItem("introPlayed", "true");
