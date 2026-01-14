@@ -1,23 +1,68 @@
-document.addEventListener("DOMContentLoaded", () => {
-  startIntro();
-  openCurtains();
+
+
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+
+  const DELAY_BEFORE_EXIT = 5000;
+  const EXIT_DURATION = 1700;
+  const SCRIPT_OFFSET = 3000; // intro starts before loader ends
+
+  const hasPlayed = sessionStorage.getItem("introPlayed");
+
+  /* 🔁 RETURN VISIT */
+  if (hasPlayed) {
+    if (preloader) preloader.remove();
+
+    // 🔥 intro runs immediately
+    if (typeof startIntro === "function") {
+      startIntro();
+    }
+
+    return;
+  }
+
+  /* 🟢 FIRST VISIT */
+  sessionStorage.setItem("introPlayed", "true");
+
+  preloader.style.transform = "translateY(0)";
+  preloader.style.transition =
+    `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
+
+  // force reflow
+  preloader.offsetHeight;
+
+  /* ⏳ delay before exit */
+  setTimeout(() => {
+    preloader.style.transform = "translateY(-100vh)";
+    preloader.style.pointerEvents = "none";
+
+    /* 🔥 START INTRO BEFORE LOADER FINISHES */
+    setTimeout(() => {
+      if (typeof startIntro === "function") {
+        startIntro();
+      }
+    }, EXIT_DURATION - SCRIPT_OFFSET);
+
+    /* 🧹 remove loader after exit */
+    setTimeout(() => {
+      preloader.remove();
+    }, EXIT_DURATION);
+
+  }, DELAY_BEFORE_EXIT);
 });
+
+
+
 
 const GLYPHS = "ABCDEFGHIJRSTUVWXYZ";
 
-/* ============================
-   INTRO TEXT
-============================ */
 function startIntro() {
-  buildIntroWords();
+  const rows = document.querySelectorAll(".row-intro");
+  const banners = document.querySelectorAll(".banner-box");
 
-  document.querySelectorAll(".row-intro").forEach((row, rowIndex) => {
-    animateRow(row, rowIndex);
-  });
-}
-
-/* BUILD WRONG WORD */
-function buildIntroWords() {
+  /* ----------------------------
+     BUILD WRONG WORDS
+  ---------------------------- */
   document.querySelectorAll(".word-wrapper").forEach(wrapper => {
     const finalWord = wrapper.dataset.final;
     wrapper.innerHTML = "";
@@ -26,64 +71,57 @@ function buildIntroWords() {
       const span = document.createElement("span");
       span.className = "character";
       span.dataset.final = letter;
-
       span.textContent =
         GLYPHS[(Math.random() * GLYPHS.length) | 0];
-
       wrapper.appendChild(span);
     });
   });
-}
 
-/* ANIMATE TEXT */
-function animateRow(row, rowIndex) {
-  const letters = row.querySelectorAll(".character");
+  /* ----------------------------
+     TEXT ANIMATION (PER ROW)
+  ---------------------------- */
+  rows.forEach((row, rowIndex) => {
+    const letters = row.querySelectorAll(".character");
 
-  const tl = gsap.timeline({
-    delay: rowIndex * 0.25
+    const tl = gsap.timeline({
+      delay: rowIndex * 0.25
+    });
+
+    /* FALL */
+    tl.fromTo(
+      letters,
+      { y: "-1.2em", opacity: 1 },
+      {
+        y: "0em",
+        duration: 1,
+        ease: "cubic-bezier(0.86, 0.2, 0.11, 1.19)",
+        stagger: 0.065
+      }
+    );
+
+    /* BUILD WORD */
+    letters.forEach((letter, i) => {
+      const buildDelay = 2 + i * 0.15;
+
+      tl.call(() => {
+        letter.textContent =
+          GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      }, null, buildDelay);
+
+      tl.call(() => {
+        letter.textContent = letter.dataset.final;
+      }, null, buildDelay + 0.12);
+    });
   });
 
-  /* FALL */
-  tl.fromTo(
-    letters,
-    { y: "-1.2em", opacity: 1 },
-    {
-      y: "0em",
-      duration: 1,
-      ease: "cubic-bezier(0.86, 0.2, 0.11, 1.19)",
-      stagger: 0.065
-    }
-  );
-
-  /* BUILD WORD */
-  letters.forEach((letter, i) => {
-    const buildDelay = 2 + i * 0.15;
-
-    tl.call(() => {
-      letter.textContent =
-        GLYPHS[(Math.random() * GLYPHS.length) | 0];
-    }, null, buildDelay);
-
-    tl.call(() => {
-      letter.textContent = letter.dataset.final;
-    }, null, buildDelay + 0.12);
-  });
-}
-
-/* ============================
-   CURTAIN IMAGES
-============================ */
-function openCurtains() {
-  const banners = document.querySelectorAll(".banner-box");
-
+  /*  CURTAIN IMAGES  */
   banners.forEach((box, i) => {
     setTimeout(() => {
       box.style.animation =
         "4s curtain cubic-bezier(0.86, 0.2, 0.07, 1) forwards";
-    }, 800 + i * 300); // ⬅ stagger per row
+    }, 800 + i * 300);
   });
 }
-
 
 
 $(function () {
