@@ -1,48 +1,90 @@
-window.__INTRO_ACTIVE__ = true;
+document.addEventListener("DOMContentLoaded", () => {
+  startIntro();
+  openCurtains();
+});
 
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
+const GLYPHS = "ABCDEFGHIJRSTUVWXYZ";
 
-// 1. Check immediately if they've seen it
-const hasPlayed = sessionStorage.getItem("introPlayed");
-const preloader = document.getElementById("preloader");
+/* ============================
+   INTRO TEXT
+============================ */
+function startIntro() {
+  buildIntroWords();
 
-if (hasPlayed) {
-  // 🔁 RETURN VISIT
-    if (preloader) preloader.remove();
-    
-    // Check if we arrived here via a normal link or a refresh
-    // If we haven't 'forced' a clean load yet, do it once.
-    if (!window.location.hash.includes("loaded")) {
-        window.location.hash = "loaded";
-        window.location.reload(); 
-    }
-} else {
-  // 🟢 FIRST VISIT: Run the animation logic
-  sessionStorage.setItem("introPlayed", "true");
-
-  window.addEventListener("load", () => {
-    if (!preloader) return;
-
-    const DELAY_BEFORE_EXIT = 5000;
-    const EXIT_DURATION = 1700;
-
-    // Set up the exit animation
-    preloader.style.transform = "translateY(0)";
-    preloader.style.transition = `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
-
-    setTimeout(() => {
-      preloader.style.transform = "translateY(-100vh)";
-      preloader.style.pointerEvents = "none";
-
-      // Remove from DOM after it slides away
-      setTimeout(() => {
-        preloader.remove();
-      }, EXIT_DURATION);
-    }, DELAY_BEFORE_EXIT);
+  document.querySelectorAll(".row-intro").forEach((row, rowIndex) => {
+    animateRow(row, rowIndex);
   });
 }
+
+/* BUILD WRONG WORD */
+function buildIntroWords() {
+  document.querySelectorAll(".word-wrapper").forEach(wrapper => {
+    const finalWord = wrapper.dataset.final;
+    wrapper.innerHTML = "";
+
+    [...finalWord].forEach(letter => {
+      const span = document.createElement("span");
+      span.className = "character";
+      span.dataset.final = letter;
+
+      span.textContent =
+        GLYPHS[(Math.random() * GLYPHS.length) | 0];
+
+      wrapper.appendChild(span);
+    });
+  });
+}
+
+/* ANIMATE TEXT */
+function animateRow(row, rowIndex) {
+  const letters = row.querySelectorAll(".character");
+
+  const tl = gsap.timeline({
+    delay: rowIndex * 0.25
+  });
+
+  /* FALL */
+  tl.fromTo(
+    letters,
+    { y: "-1.2em", opacity: 1 },
+    {
+      y: "0em",
+      duration: 1,
+      ease: "cubic-bezier(0.86, 0.2, 0.11, 1.19)",
+      stagger: 0.065
+    }
+  );
+
+  /* BUILD WORD */
+  letters.forEach((letter, i) => {
+    const buildDelay = 2 + i * 0.15;
+
+    tl.call(() => {
+      letter.textContent =
+        GLYPHS[(Math.random() * GLYPHS.length) | 0];
+    }, null, buildDelay);
+
+    tl.call(() => {
+      letter.textContent = letter.dataset.final;
+    }, null, buildDelay + 0.12);
+  });
+}
+
+/* ============================
+   CURTAIN IMAGES
+============================ */
+function openCurtains() {
+  const banners = document.querySelectorAll(".banner-box");
+
+  banners.forEach((box, i) => {
+    setTimeout(() => {
+      box.style.animation =
+        "4s curtain cubic-bezier(0.86, 0.2, 0.07, 1) forwards";
+    }, 800 + i * 300); // ⬅ stagger per row
+  });
+}
+
+
 
 $(function () {
   //helpers

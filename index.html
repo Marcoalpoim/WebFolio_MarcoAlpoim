@@ -29,10 +29,12 @@
   <link rel="stylesheet" href="./styles/style.css" />
   <link rel="stylesheet" href="./styles/style_cards.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
 </head>
 
 <body>
-  <div id="preloader">
+  <div id="preloader" style="display: none;">
     <img src="./images/loader.gif" alt="Loading" title="Loading..." />
   </div>
 
@@ -110,9 +112,30 @@
       </div>
     </div>
 
-    <!--INTRO-->
-    <div id="__nuxt"></div>
-
+<section class="intro" id="intro-section">
+  <div class="intro-container">
+    <div class="row-intro">
+      <span class="word-wrapper" data-final="DIGITAL"></span>
+      <div class="banner-box">
+        <img src="./projects/01-telepizza/telepizza-banner.webp" class="banner">
+      </div>
+      <span class="word-wrapper" data-final="DESIGNER"></span>
+    </div>
+    <div class="row-intro">
+      <span class="word-wrapper" data-final="AND"></span>
+      <div class="banner-box">
+        <img src="./projects/02-ssam/ssam-banner.png" class="banner">
+      </div>
+      <span class="word-wrapper" data-final="FRONT-END"></span>
+    </div>
+    <div class="row-intro">
+      <span class="word-wrapper" data-final="DEVELOPER"></span>
+      <div class="banner-box">
+        <img src="./projects/03-computersaysno/csn-intro.png" class="banner">
+      </div>
+    </div>
+  </div>
+</section>
     <!-- END INTRO-->
 
     <div class="scroll-animation" id="onscrollremove">
@@ -951,6 +974,8 @@
     </div>
   </div>
 
+
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script src="scripts/script.js"></script>
 
   <script>
@@ -1037,14 +1062,7 @@
       }
     });
   </script>
-
-  <script src="./scripts/intro-js/intro2.js" defer></script>
-  <script defer="" src="./scripts/intro-js/state.js"></script>
-  <script src="./scripts/intro-js/intro1.js" defer=""></script>
-  <script src="./scripts/intro-js/intro3.js" defer=""></script>
-  <script src="./scripts/intro-js/intro4.js" defer=""></script>
-  <script src="./scripts/intro-js/intro5.js" defer=""></script>
-  <script src="./scripts/intro-js/intro6.js" defer=""></script>
+ 
 </body>
 
 </html>
