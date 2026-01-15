@@ -91,13 +91,13 @@ window.onbeforeunload = function () {
   function initPageAnimations() {
     document.body?.classList.add('show');
 
-    document.getElementById('titleAnimation')?.classList.add('fade-up');
-    document.getElementById('main_navBar')?.classList.add('main_navBar');
+    document.getElementById('fadeDiv')?.classList.add('fade-up');
+    document.getElementById('fadeDiv2')?.classList.add('fade-up2');
     document.getElementById('slide-down')?.classList.add('slidedownbanner');
 
     timeouts.push(
       setTimeout(() => {
-        document.getElementById('main_navBar')?.classList.add('visible');
+        document.getElementById('fadeDiv2')?.classList.add('visible');
       }, 10)
     );
   }
@@ -136,7 +136,7 @@ window.onbeforeunload = function () {
 
     const $menu = $(".menu");
     const $index = $(".index");
-    const $fade = $("#titleAnimation");
+    const $fade = $("#main_navBar");
 
     if (!$menu.length) return;
 

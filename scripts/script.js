@@ -211,7 +211,7 @@ $(function () {
 
   const $menu = $(".menu");
   const $index = $(".index");
-  const $fade = $("#fadeDiv");
+  const $fade = $("#main_navBar");
 
   function openMenu() {
     $menu.addClass("open");
