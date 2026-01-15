@@ -176,7 +176,6 @@ window.onbeforeunload = function () {
     
   });
 })();
- 
-document.getElementById('backBtn').addEventListener('click', function () {
-  sessionStorage.setItem('scrollY', window.scrollY);
-});
+
+
+

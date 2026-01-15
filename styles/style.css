@@ -18,6 +18,11 @@
   scroll-behavior: smooth;
 }
 
+html, body {
+  min-height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
 /* Loader Styling */
 #preloader {
   position: fixed;

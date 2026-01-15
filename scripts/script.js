@@ -1,12 +1,7 @@
 
 
 window.addEventListener("load", () => {
- const scrollY = sessionStorage.getItem('scrollY');
 
-  if (scrollY !== null) {
-    window.scrollTo(0, parseInt(scrollY, 10));
-    sessionStorage.removeItem('scrollY');
-  }
   const main_navBar = document.getElementById("main_navBar");
   main_navBar.classList.add("main_navBar");
   
@@ -656,8 +651,6 @@ $(function () {
   })();
 }).call(this);
 
-
-
 const stackedCard = new stackedCards({
   selector: ".featured",
   layout: "fanOut",
@@ -665,3 +658,12 @@ const stackedCard = new stackedCards({
 });
 
 stackedCard.init();
+
+window.addEventListener('pageshow', function (event) {
+  if (event.persisted) {
+    // Force a repaint when returning via back button
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // trigger reflow
+    document.body.style.display = '';
+  }
+});
