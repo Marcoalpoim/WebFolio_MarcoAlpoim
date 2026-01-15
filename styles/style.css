@@ -405,6 +405,10 @@ header.sticky .bar {
   margin-top: 25px;
 }
 
+.word-gap {
+padding-right: 35px;
+}
+
 .character {
   display: inline-block;
   transform: translateY(-1.2em);
@@ -930,7 +934,9 @@ body {
   .stacked-cards ul {
     height: 250px !important;
   }
-
+.word-gap {
+padding-right: 10px;
+}
   .slider li {
     height: 200px;
     width: 200px;
