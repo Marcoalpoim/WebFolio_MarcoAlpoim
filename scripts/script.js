@@ -155,38 +155,7 @@ letters.forEach((letter, i) => {
     }, 200);
   });
 }
-
-
-/*
-document.querySelectorAll("a.card").forEach((link) => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        let href = this.href;
-        let div = document.getElementById("container");
-        let opacity = 1;
-
-        let fadeOut = setInterval(() => {
-          if (opacity <= 0) {
-            clearInterval(fadeOut);
-            div.style.display = "none";
-          } else {
-            opacity -= 0.05;
-            div.style.opacity = opacity;
-          }
-        }, 30);
-
-        setTimeout(() => {
-          document.body.classList.add("fade-out");
-          setTimeout(() => {
-            window.location.href = href;
-          }, 300);
-        }, 30);
-      });
-    });
-
-*/
-
-
+ 
 
 $(function () {
    
