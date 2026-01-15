@@ -92,9 +92,7 @@ function startIntro() {
   const rows = document.querySelectorAll(".row-intro");
   const banners = document.querySelectorAll(".banner-box");
 
-  /* ------------------------------------
-     Build scrambled letters
-  ------------------------------------ */
+  /*  Build scrambled letters  */
   document.querySelectorAll(".word-wrapper").forEach(wrapper => {
     const finalWord = wrapper.dataset.final;
     wrapper.innerHTML = "";
@@ -147,13 +145,11 @@ letters.forEach((letter, i) => {
 
 });
 
-  /* ------------------------------------
-     Banner curtain animation
-  ------------------------------------ */
+  /*  Banner curtain animation  */
   banners.forEach((box, i) => {
     setTimeout(() => {
       box.style.animation = "none";
-      box.offsetHeight; // force reflow
+      box.offsetHeight;  
       box.style.animation =
         "4s curtain cubic-bezier(1, 0.06, 0.49, 1) forwards";
     }, 200);

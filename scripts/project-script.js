@@ -20,7 +20,7 @@ window.onbeforeunload = function () {
   };
 
   window.addEventListener('beforeunload', clearAllTimeouts);
-
+ 
    // STAGGERED TEXT ANIMATION 
  function initStaggeredTextAuto() {
   const elements = document.querySelectorAll('[data-stagger]');
@@ -163,7 +163,7 @@ window.onbeforeunload = function () {
     // INIT/
   onReady(() => {
     initStaggeredTextAuto();
-
+   
     initImageExpand();
     initStickyHeader();
     initSmoothScroll();
@@ -173,5 +173,15 @@ window.onbeforeunload = function () {
   onLoad(() => {
     initPageAnimations();
     initMarquee();
+    
   });
 })();
+ 
+function goBack() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/';
+  }
+}
+ 
