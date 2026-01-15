@@ -157,7 +157,7 @@ letters.forEach((letter, i) => {
 }
 
 
-
+/*
 document.querySelectorAll("a.card").forEach((link) => {
       link.addEventListener("click", function (e) {
         e.preventDefault();
@@ -184,7 +184,7 @@ document.querySelectorAll("a.card").forEach((link) => {
       });
     });
 
-
+*/
 
 
 
