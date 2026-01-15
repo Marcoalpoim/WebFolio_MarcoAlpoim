@@ -177,11 +177,6 @@ window.onbeforeunload = function () {
   });
 })();
  
-function goBack() {
-  if (window.history.length > 1) {
-    window.history.back();
-  } else {
-    window.location.href = '/';
-  }
-}
- 
+document.getElementById('backBtn').addEventListener('click', function () {
+  sessionStorage.setItem('scrollY', window.scrollY);
+});
