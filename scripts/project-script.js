@@ -6,9 +6,7 @@ window.onbeforeunload = function () {
 (function () {
   const timeouts = [];
 
-  /* ----------------------------------
-     HELPERS
-  ---------------------------------- */
+  /*   HELPERS  */
   const onReady = (fn) =>
     document.readyState !== 'loading'
       ? fn()
@@ -65,9 +63,7 @@ window.onbeforeunload = function () {
 }
 
 
-  /* ----------------------------------
-     IMAGE EXPAND ANIMATION
-  ---------------------------------- */
+  /*  IMAGE EXPAND ANIMATION  */
   function initImageExpand() {
     const imgs = document.querySelectorAll('.img');
     if (!imgs.length) return;
@@ -79,9 +75,7 @@ window.onbeforeunload = function () {
     );
   }
 
-  /* ----------------------------------
-     STICKY HEADER
-  ---------------------------------- */
+  /*  STICKY HEADER  */
   function initStickyHeader() {
     const header = document.querySelector('header');
     if (!header) return;
@@ -93,19 +87,17 @@ window.onbeforeunload = function () {
     });
   }
 
-  /* ----------------------------------
-     FADE & SLIDE ANIMATIONS
-  ---------------------------------- */
+  /*  FADE & SLIDE ANIMATIONS  */
   function initPageAnimations() {
     document.body?.classList.add('show');
 
-    document.getElementById('fadeDiv')?.classList.add('fade-up');
-    document.getElementById('fadeDiv2')?.classList.add('fade-up2');
+    document.getElementById('titleAnimation')?.classList.add('fade-up');
+    document.getElementById('main_navBar')?.classList.add('main_navBar');
     document.getElementById('slide-down')?.classList.add('slidedownbanner');
 
     timeouts.push(
       setTimeout(() => {
-        document.getElementById('fadeDiv2')?.classList.add('visible');
+        document.getElementById('main_navBar')?.classList.add('visible');
       }, 10)
     );
   }
@@ -144,7 +136,7 @@ window.onbeforeunload = function () {
 
     const $menu = $(".menu");
     const $index = $(".index");
-    const $fade = $("#fadeDiv");
+    const $fade = $("#titleAnimation");
 
     if (!$menu.length) return;
 

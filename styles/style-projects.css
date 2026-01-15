@@ -13,8 +13,8 @@
   font-family: "Formula Condensed";
   font-style: normal;
   font-weight: 700;
-  src: url(/font/FormulaCondensed-Bold.woff2) format("woff2"),
-    url(/font/FormulaCondensed-Bold.woff) format("woff");
+  src: url(../font/FormulaCondensed-Bold.woff2) format("woff2"),
+    url(../font/FormulaCondensed-Bold.woff) format("woff");
 }
 
 /* Style for the whole page */
@@ -224,20 +224,14 @@ header.sticky {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
-
-/* Fade-up effect */
-.fade-up2 {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+ 
 header:after {
   left: -0.75rem;
 }
 
 .bar {
   height: 4px;
-  background-color: #ddd; /* Default color */
+  background-color: #ddd;  
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease-out;
 }
@@ -245,8 +239,7 @@ header:after {
 header.sticky .bar {
   background-color: #000000;
 }
-
-/* Simulated content */
+ 
 .content {
   padding: 20px;
   height: auto;
@@ -316,7 +309,7 @@ header.sticky .bar {
     top 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .menu.open {
-  top: -1%; /* Moves into view when open */
+  top: -1%;  
 }
 
 @media only screen and (max-width: 768px) {
@@ -366,7 +359,7 @@ header.sticky .bar {
 }
 
 .img.expand {
-  width: 15vw; /* Final expanded width */
+  width: 15vw;  
 }
 
 span img {
@@ -394,17 +387,17 @@ span img {
   line-height: 1;
   position: relative;
   opacity: 0;
-  animation: small-enter 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 6s forwards; /* Bounce animation */
+  animation: small-enter 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 6s forwards; 
+ 
 }
-
-/* Bounce Keyframes */
+ 
 @keyframes small-enter {
   0% {
-    opacity: 0; /* Start from below */
+    opacity: 0;  
   }
 
   100% {
-    opacity: 1; /* Settle in final position */
+    opacity: 1;  
   }
 }
 
@@ -447,18 +440,18 @@ span img {
 
 .index {
   opacity: 0;
-  transform: translateY(1%); /* Move to original position */
+  transform: translateY(1%);  
   animation: index-slide-in 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) 6s forwards; /* Bounce animation */
 }
-/* Bounce Keyframes */
+ 
 @keyframes index-slide-in {
   0% {
     opacity: 0;
-    transform: translateY(1%); /* Start from below */
+    transform: translateY(1%);  
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Settle in final position */
+    transform: translateY(0);  
   }
 }
 
@@ -492,37 +485,37 @@ span img {
 
 .staggered-project span {
   display: inline-block;
-  opacity: 0; /* Start invisible */
+  opacity: 0;  
   font-size: 7rem;
   line-height: 7.2rem;
-  transform: translateY(100px); /* Start from below */
+  transform: translateY(100px);  
   transition: opacity 0.3s cubic-bezier(0.86, 0, 0.07, 1),
-    transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1); /* Transition for opacity and transform */
+    transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);  
 }
 
 .staggered-project span.visible {
-  opacity: 1; /* Make it visible */
-  transform: translateY(0); /* Move to original position */
-  animation: bounce 1.5s cubic-bezier(0.86, 0, 0.07, 1) forwards; /* Bounce animation */
+  opacity: 1;  
+  transform: translateY(0);  
+  animation: bounce 1.5s cubic-bezier(0.86, 0, 0.07, 1) forwards;  
 }
 /* Bounce Keyframes */
 @keyframes bounce {
   0% {
-    transform: translateY(150px); /* Start from below */
+    transform: translateY(150px);  
   }
   60% {
-    transform: translateY(0px); /* Go above the final position */
+    transform: translateY(-10px);  
   }
   100% {
-    transform: translateY(0); /* Settle in final position */
+    transform: translateY(0); 
   }
 }
 
 @media only screen and (max-width: 768px) {
   .staggered-project span.visible {
-    opacity: 1; /* Make it visible */
-    transform: translateY(0); /* Move to original position */
-    animation: bounce 1.5s cubic-bezier(0.86, 0, 0.07, 1) forwards; /* Bounce animation */
+    opacity: 1;  
+    transform: translateY(0);  
+    animation: bounce 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;  
   }
   #fadeDiv {
     margin-top: 0rem;

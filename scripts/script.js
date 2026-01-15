@@ -1,19 +1,25 @@
 
 
 window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
 
+  const main_navBar = document.getElementById("main_navBar");
+  main_navBar.classList.add("main_navBar");
+  
+  setTimeout(function () {
+        document.getElementById("main_navBar").classList.add("visible");
+      }, 100);
+  
+  
+  const preloader = document.getElementById("preloader");
   const DELAY_BEFORE_EXIT = 5000;
   const EXIT_DURATION = 1700;
-  const SCRIPT_OFFSET = 3000; // intro starts before loader ends
-
+  const SCRIPT_OFFSET = 5000;  
   const hasPlayed = sessionStorage.getItem("introPlayed");
 
-  /* 🔁 RETURN VISIT */
+ 
   if (hasPlayed) {
     if (preloader) preloader.remove();
-
-    // 🔥 intro runs immediately
+ 
     if (typeof startIntro === "function") {
       startIntro();
     }
@@ -21,29 +27,29 @@ window.addEventListener("load", () => {
     return;
   }
 
-  /* 🟢 FIRST VISIT */
+ 
   sessionStorage.setItem("introPlayed", "true");
 
   preloader.style.transform = "translateY(0)";
   preloader.style.transition =
     `transform ${EXIT_DURATION}ms cubic-bezier(0.19, 1, 0.22, 1)`;
 
-  // force reflow
+ 
   preloader.offsetHeight;
 
-  /* ⏳ delay before exit */
+ 
   setTimeout(() => {
     preloader.style.transform = "translateY(-100vh)";
     preloader.style.pointerEvents = "none";
 
-    /* 🔥 START INTRO BEFORE LOADER FINISHES */
+  
     setTimeout(() => {
       if (typeof startIntro === "function") {
         startIntro();
       }
     }, EXIT_DURATION - SCRIPT_OFFSET);
 
-    /* 🧹 remove loader after exit */
+   
     setTimeout(() => {
       preloader.remove();
     }, EXIT_DURATION);
@@ -51,18 +57,44 @@ window.addEventListener("load", () => {
   }, DELAY_BEFORE_EXIT);
 });
 
+let resizeTimeout;
+
+
+const header = document.querySelector("header");
+const sticky = header.offsetTop;
+let hasScrolled = false;
+
+
+ window.addEventListener("scroll", function () {
+   if (!hasScrolled) {
+     const divToRemove = document.getElementById("onscrollremove");
+     if (divToRemove) {
+       divToRemove.remove();
+     }
+     hasScrolled = true;
+   }
+
+   if (window.pageYOffset > sticky) {
+     header.classList.add("sticky");
+   } else {
+     header.classList.remove("sticky");
+   }
 
 
 
-const GLYPHS = "ABCDEFGHIJRSTUVWXYZ";
+ });
+
+ 
+
+const GLYPHS = "ABCDEFGHIJRSTUVXYZ";
 
 function startIntro() {
   const rows = document.querySelectorAll(".row-intro");
   const banners = document.querySelectorAll(".banner-box");
 
-  /* ----------------------------
-     BUILD WRONG WORDS
-  ---------------------------- */
+  /* ------------------------------------
+     Build scrambled letters
+  ------------------------------------ */
   document.querySelectorAll(".word-wrapper").forEach(wrapper => {
     const finalWord = wrapper.dataset.final;
     wrapper.innerHTML = "";
@@ -77,55 +109,105 @@ function startIntro() {
     });
   });
 
-  /* ----------------------------
-     TEXT ANIMATION (PER ROW)
-  ---------------------------- */
+  /* ------------------------------------
+     Animate rows
+  ------------------------------------ */
   rows.forEach((row, rowIndex) => {
     const letters = row.querySelectorAll(".character");
 
     const tl = gsap.timeline({
-      delay: rowIndex * 0.25
+      delay: rowIndex * 0.3
     });
 
-    /* FALL */
+    /* Entrance */
     tl.fromTo(
       letters,
-      { y: "-1.2em", opacity: 1 },
+      { y: "-1em", opacity: 1 },
       {
         y: "0em",
         duration: 1,
-        ease: "cubic-bezier(0.86, 0.2, 0.11, 1.19)",
+        ease: "cubic-bezier(1, 0.02, 0, 1.03)",
         stagger: 0.065
       }
     );
 
-    /* BUILD WORD */
-    letters.forEach((letter, i) => {
-      const buildDelay = 2 + i * 0.15;
+    /* Resolve scramble → final */
+    tl.to(letters, {
+      opacity: 0,
+      y: "-0.15em",
+      filter: "blur(6px)",
+      duration: 0.45,
+      ease: "power2.inOut",
+      stagger: {
+        each: 0.06,
+        ease: "power2.out",
+        onComplete: function () {
+          const el = this.targets()[0];
+          el.textContent = el.dataset.final;
+        }
+      }
+    }, "+=0.2");
 
-      tl.call(() => {
-        letter.textContent =
-          GLYPHS[(Math.random() * GLYPHS.length) | 0];
-      }, null, buildDelay);
-
-      tl.call(() => {
-        letter.textContent = letter.dataset.final;
-      }, null, buildDelay + 0.12);
-    });
+    tl.to(letters, {
+      opacity: 1,
+      y: "0em",
+      filter: "blur(0px)",
+      duration: 0.6,
+      ease: "power3.out",
+      stagger: {
+        each: 0.06,
+        ease: "power2.out"
+      }
+    }, "<0.15");
   });
 
-  /*  CURTAIN IMAGES  */
+  /* ------------------------------------
+     Banner curtain animation
+  ------------------------------------ */
   banners.forEach((box, i) => {
     setTimeout(() => {
+      box.style.animation = "none";
+      box.offsetHeight; // force reflow
       box.style.animation =
-        "4s curtain cubic-bezier(0.86, 0.2, 0.07, 1) forwards";
-    }, 800 + i * 300);
+        "4s curtain cubic-bezier(1, 0.06, 0.49, 1) forwards";
+    }, 200);
   });
 }
 
 
+
+document.querySelectorAll("a.card").forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        let href = this.href;
+        let div = document.getElementById("container");
+        let opacity = 1;
+
+        let fadeOut = setInterval(() => {
+          if (opacity <= 0) {
+            clearInterval(fadeOut);
+            div.style.display = "none";
+          } else {
+            opacity -= 0.05;
+            div.style.opacity = opacity;
+          }
+        }, 30);
+
+        setTimeout(() => {
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = href;
+          }, 300);
+        }, 30);
+      });
+    });
+
+
+
+
+
 $(function () {
-  //helpers
+   
 
   const $menu = $(".menu");
   const $index = $(".index");

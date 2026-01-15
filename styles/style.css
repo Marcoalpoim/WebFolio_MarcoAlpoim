@@ -240,7 +240,7 @@ header.sticky {
 }
 
 /* Fade-up effect */
-.fade-up2 {
+.main_navBar {
   transform: translateY(0);
 }
 
@@ -411,12 +411,14 @@ header.sticky .bar {
   opacity: 0;
 color: white;
   transition:
-    transform 0.8s cubic-bezier(0.86, 0.2, 0.11, 1.19),
+    transform 1s cubic-bezier(1, 0.02, 0.5, 1.11),
     opacity 0.9s ease-out;
-
+  will-change: transform, opacity, filter;
 
 }
-
+.banner-box {
+  will-change: width;
+}
 
 .intro.play .character {
   transform: translateY(0);
@@ -438,12 +440,12 @@ color: white;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 10px; 
 }
 
 @keyframes curtain {
   from { width: 0rem; }
-  to   { width: 35rem; }
+  to   { width: 30rem; }
 }
 
 

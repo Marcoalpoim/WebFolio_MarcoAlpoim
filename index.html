@@ -49,8 +49,8 @@
   </button>
 
   <div id="container content ">
-    <!--MAIN HEADER-->
-    <header id="fadeDiv2">
+    
+    <header id="main_navBar">
       <div class="bar"></div>
       <a href="./index.html" aria-current="page">
         <span><span>Marco Alpoim</span></span></a>
@@ -112,6 +112,8 @@
       </div>
     </div>
 
+  <!-- INTRO-->
+
 <section class="intro" id="intro-section">
   <div class="intro-container">
     <div class="row-intro">
@@ -143,19 +145,7 @@
       <div class="chevron"></div>
       <div class="chevron"></div>
     </div>
-    <script>
-      let hasScrolled = false;
-
-      window.addEventListener("scroll", function () {
-        if (!hasScrolled) {
-          const divToRemove = document.getElementById("onscrollremove");
-          if (divToRemove) {
-            divToRemove.remove();
-          }
-          hasScrolled = true;
-        }
-      });
-    </script>
+   
 
     <div class="index">
       <main data-v-cardsmain="">
@@ -978,90 +968,9 @@
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script src="scripts/script.js"></script>
 
-  <script>
-    // Select the header element
-    const header = document.querySelector("header");
-    const sticky = header.offsetTop;
+ 
 
-    // Add scroll event listener
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-      } else {
-        header.classList.remove("sticky");
-      }
-    });
-  </script>
-
-  <script>
-    window.addEventListener("load", function () {
-      setTimeout(function () {
-        document.getElementById("fadeDiv2").classList.add("visible");
-      }, 100);
-    });
-
-    let resizeTimeout;
-  </script>
-
-  <script>
-    window.addEventListener("load", () => {
-      const fadeDiv2 = document.getElementById("fadeDiv2");
-      fadeDiv2.classList.add("fade-up2");
-    });
-  </script>
-
-  <script>
-    document.querySelectorAll("a.card").forEach((link) => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        let href = this.href;
-        let div = document.getElementById("container");
-        let opacity = 1;
-
-        let fadeOut = setInterval(() => {
-          if (opacity <= 0) {
-            clearInterval(fadeOut);
-            div.style.display = "none";
-          } else {
-            opacity -= 0.05;
-            div.style.opacity = opacity;
-          }
-        }, 30);
-
-        setTimeout(() => {
-          document.body.classList.add("fade-out");
-          setTimeout(() => {
-            window.location.href = href;
-          }, 300);
-        }, 30);
-      });
-    });
-
-    // Remove "fade-out" quando se volta com history.back
-    window.addEventListener("pageshow", function (event) {
-      if (
-        event.persisted ||
-        performance.getEntriesByType("navigation")[0].type === "back_forward"
-      ) {
-        document.body.classList.remove("fade-out");
-
-        // (opcional) restaurar opacidade e display se necessário
-        let div = document.getElementById("container");
-        if (div) {
-          div.style.display = "block";
-          div.style.opacity = 1;
-        }
-      }
-    });
-    window.addEventListener("pageshow", function (event) {
-      if (event.persisted) {
-        // This page was loaded from the back/forward cache (via history.back etc.)
-        document
-          .querySelector(".staggered-text span.visible")
-          .classList.add("bounce-none");
-      }
-    });
-  </script>
+ 
  
 </body>
 
