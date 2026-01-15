@@ -945,8 +945,7 @@ footer[data-v-cardsmain] {
 }
 
 .card .title[data-v-cardsinfo] {
-    grid-area: title;
-    white-space: pre-line;
+    grid-area: title; 
     color: #ffff;
 }
 
