@@ -152,7 +152,7 @@ letters.forEach((letter, i) => {
       box.offsetHeight;  
       box.style.animation =
         "4s curtain cubic-bezier(1, 0.06, 0.49, 1) forwards";
-    }, 200);
+    }, 0);
   });
 }
  
