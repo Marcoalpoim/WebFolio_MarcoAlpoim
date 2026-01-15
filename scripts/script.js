@@ -112,54 +112,40 @@ function startIntro() {
   /* ------------------------------------
      Animate rows
   ------------------------------------ */
-  rows.forEach((row, rowIndex) => {
-    const letters = row.querySelectorAll(".character");
+rows.forEach((row, rowIndex) => {
+  const letters = row.querySelectorAll(".character");
 
-    const tl = gsap.timeline({
-      delay: rowIndex * 0.3
-    });
-
-    /* Entrance */
-    tl.fromTo(
-      letters,
-      { y: "-1em", opacity: 1 },
-      {
-        y: "0em",
-        duration: 1,
-        ease: "cubic-bezier(1, 0.02, 0, 1.03)",
-        stagger: 0.065
-      }
-    );
-
-    /* Resolve scramble → final */
-    tl.to(letters, {
-      opacity: 0,
-      y: "-0.15em",
-      filter: "blur(6px)",
-      duration: 0.45,
-      ease: "power2.inOut",
-      stagger: {
-        each: 0.06,
-        ease: "power2.out",
-        onComplete: function () {
-          const el = this.targets()[0];
-          el.textContent = el.dataset.final;
-        }
-      }
-    }, "+=0.2");
-
-    tl.to(letters, {
-      opacity: 1,
-      y: "0em",
-      filter: "blur(0px)",
-      duration: 0.6,
-      ease: "power3.out",
-      stagger: {
-        each: 0.06,
-        ease: "power2.out"
-      }
-    }, "<0.15");
+  const tl = gsap.timeline({
+    delay: rowIndex * 0.3
   });
+
+  /* LIQUID FALL */
+  tl.fromTo(
+    letters,
+    { y: "-1.2em", opacity: 1 },
+    {
+      y: "0em",
+      duration: 1,
+      ease: "cubic-bezier(0.86, 0.2, 0.11, 1.19)",
+      stagger: 0.065
+    }
+  );
+
+  /* SMOOTH LETTER RESOLVE (NO GLITCH) */
+letters.forEach((letter, i) => {
+  const total = letters.length - 1;
+  const t = i / total;
+
+  // start AFTER fall finishes
+  const resolveTime =
+    0 + gsap.parseEase("power3.out")(t) * 1.4;
+
+  tl.call(() => {
+    letter.textContent = letter.dataset.final;
+  }, null, resolveTime);
+});
+
+});
 
   /* ------------------------------------
      Banner curtain animation
