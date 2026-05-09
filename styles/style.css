@@ -602,7 +602,7 @@ color: white;
 #myBtn-gotop {
   display: none;
   position: fixed;
-  bottom: 2dvh;
+  bottom: 10dvh;
   right: 20px;
   z-index: 99;
   font-size: 18px;
@@ -950,14 +950,4 @@ padding-right: 10px;
   }
 }
 
-.inspiration {
-  display: flex;
-  position: relative;
-  width: 100%;
-  padding: 1%;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  color: rgb(66, 66, 66);
-  font-size: 14px;
-}
+ 

@@ -1,181 +1,170 @@
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-};
+// project-script.js — fully vanilla JS (jQuery removed)
 
+window.onbeforeunload = () => window.scrollTo(0, 0);
 
 (function () {
   const timeouts = [];
 
-  /*   HELPERS  */
-  const onReady = (fn) =>
-    document.readyState !== 'loading'
+  const onReady = fn =>
+    document.readyState !== "loading"
       ? fn()
-      : document.addEventListener('DOMContentLoaded', fn);
+      : document.addEventListener("DOMContentLoaded", fn);
 
-  const onLoad = (fn) => window.addEventListener('load', fn);
+  const onLoad = fn => window.addEventListener("load", fn);
 
   const clearAllTimeouts = () => {
     timeouts.forEach(clearTimeout);
     timeouts.length = 0;
   };
 
-  window.addEventListener('beforeunload', clearAllTimeouts);
- 
-   // STAGGERED TEXT ANIMATION 
- function initStaggeredTextAuto() {
-  const elements = document.querySelectorAll('[data-stagger]');
-  if (!elements.length) return;
+  window.addEventListener("beforeunload", clearAllTimeouts);
 
-  const createSpans = (text, container) => {
-    container.innerHTML = '';
-    [...text].forEach(char => {
-      const span = document.createElement('span');
-      span.textContent = char;
-      container.appendChild(span);
+
+  // ── Staggered text animation ─────────────────────────────────────────────
+  function initStaggeredTextAuto() {
+    const elements = document.querySelectorAll("[data-stagger]");
+    if (!elements.length) return;
+
+    const createSpans = (text, container) => {
+      container.innerHTML = "";
+      [...text].forEach(char => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        container.appendChild(span);
+      });
+    };
+
+    const animateText = container => {
+      container.querySelectorAll("span").forEach((span, i) => {
+        setTimeout(() => span.classList.add("visible"), i * 100);
+      });
+    };
+
+    const replaceText = (container, target) => {
+      container.querySelectorAll("span").forEach((span, i) => {
+        setTimeout(() => {
+          if (target[i]) span.textContent = target[i];
+        }, i * 100);
+      });
+    };
+
+    elements.forEach(el => {
+      const random = el.dataset.random;
+      const target = el.dataset.target;
+      if (!random || !target) return;
+
+      createSpans(random, el);
+      animateText(el);
+      setTimeout(() => replaceText(el, target), 1500);
     });
-  };
-
-  const animateText = (container) => {
-    container.querySelectorAll('span').forEach((span, i) => {
-      setTimeout(() => span.classList.add('visible'), i * 100);
-    });
-  };
-
-  const replaceText = (container, target) => {
-    container.querySelectorAll('span').forEach((span, i) => {
-      setTimeout(() => {
-        if (target[i]) span.textContent = target[i];
-      }, i * 100);
-    });
-  };
-
-  elements.forEach(el => {
-    const random = el.dataset.random;
-    const target = el.dataset.target;
-
-    if (!random || !target) return;
-
-    createSpans(random, el);
-    animateText(el);
-
-    setTimeout(() => replaceText(el, target), 1500);
-  });
-}
+  }
 
 
-  /*  IMAGE EXPAND ANIMATION  */
+  // ── Image expand animation ───────────────────────────────────────────────
   function initImageExpand() {
-    const imgs = document.querySelectorAll('.img');
+    const imgs = document.querySelectorAll(".img");
     if (!imgs.length) return;
 
     timeouts.push(
       setTimeout(() => {
-        imgs.forEach(img => img.classList.add('expand'));
+        imgs.forEach(img => img.classList.add("expand"));
       }, 100)
     );
   }
 
-  /*  STICKY HEADER  */
+
+  // ── Sticky header ────────────────────────────────────────────────────────
   function initStickyHeader() {
-    const header = document.querySelector('header');
+    const header = document.querySelector("header");
     if (!header) return;
 
     const sticky = header.offsetTop;
-
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('sticky', window.pageYOffset > sticky);
-    });
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("sticky", window.pageYOffset > sticky);
+    }, { passive: true });
   }
 
-  /*  FADE & SLIDE ANIMATIONS  */
-  function initPageAnimations() {
-    document.body?.classList.add('show');
 
-    document.getElementById('fadeDiv')?.classList.add('fade-up');
-    document.getElementById('fadeDiv2')?.classList.add('fade-up2');
-    document.getElementById('slide-down')?.classList.add('slidedownbanner');
+  // ── Fade & slide animations ──────────────────────────────────────────────
+  function initPageAnimations() {
+    document.body?.classList.add("show");
+
+    document.getElementById("fadeDiv")?.classList.add("fade-up");
+    document.getElementById("fadeDiv2")?.classList.add("fade-up2");
+    document.getElementById("slide-down")?.classList.add("slidedownbanner");
 
     timeouts.push(
       setTimeout(() => {
-        document.getElementById('fadeDiv2')?.classList.add('visible');
+        document.getElementById("fadeDiv2")?.classList.add("visible");
       }, 10)
     );
   }
 
-  //   MARQUEE (jQuery)
-  function initMarquee() {
-    if (!window.jQuery) return;
 
-    timeouts.push(
-      setTimeout(() => {
-        $('.marquee-animation img').addClass('animated');
-      }, 900),
-      setTimeout(() => {
-        $('.marquee-animation2 img').addClass('animated2');
-      }, 3000)
-    );
-  }
-
- 
-    // SMOOTH SCROLL
+  // ── Smooth scroll ────────────────────────────────────────────────────────
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const target = document.querySelector(link.getAttribute('href'));
+      link.addEventListener("click", e => {
+        const target = document.querySelector(link.getAttribute("href"));
         if (!target) return;
-
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        target.scrollIntoView({ behavior: "smooth" });
       });
     });
   }
 
-   // MENU (jQuery)/
+
+  // ── Menu open/close (vanilla) ────────────────────────────────────────────
   function initMenu() {
-    if (!window.jQuery) return;
+    const menu    = document.querySelector(".menu");
+    const index   = document.querySelector(".index");
+    const navBar  = document.getElementById("main_navBar");
+    const openBtn = document.getElementById("openMenu");
 
-    const $menu = $(".menu");
-    const $index = $(".index");
-    const $fade = $("#main_navBar");
-
-    if (!$menu.length) return;
+    if (!menu || !openBtn) return;
 
     const openMenu = () => {
-      $menu.addClass("open");
-      $index.add($fade).css("filter", "blur(90px)");
+      menu.classList.add("open");
+      if (index)  index.style.filter  = "blur(90px)";
+      if (navBar) navBar.style.filter = "blur(90px)";
+      openBtn.setAttribute("aria-expanded", "true");
+      const menuContainer = document.getElementById("menuContainer");
+      if (menuContainer) menuContainer.removeAttribute("hidden");
     };
 
     const closeMenu = () => {
-      $menu.removeClass("open");
-      $index.add($fade).css("filter", "blur(0)");
+      menu.classList.remove("open");
+      if (index)  index.style.filter  = "blur(0)";
+      if (navBar) navBar.style.filter = "blur(0)";
+      openBtn.setAttribute("aria-expanded", "false");
+      const menuContainer = document.getElementById("menuContainer");
+      if (menuContainer) menuContainer.setAttribute("hidden", "");
     };
 
-    $("#openMenu").on("click", () => {
-      setTimeout(openMenu, 10);
+    openBtn.addEventListener("click", () => setTimeout(openMenu, 10));
+
+    ["closeMenu", "closemenuonlick", "closemenuonlick2"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", closeMenu);
     });
 
-    $("#closeMenu, #closemenuonlick, #closemenuonlick2").on(
-      "click",
-      closeMenu
-    );
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+    });
   }
- 
-    // INIT/
+
+
+  // ── Init ─────────────────────────────────────────────────────────────────
   onReady(() => {
     initStaggeredTextAuto();
-   
     initImageExpand();
     initStickyHeader();
     initSmoothScroll();
-    initMenu(); // 👈 jQuery menu
+    initMenu();
   });
 
   onLoad(() => {
     initPageAnimations();
-    initMarquee();
-    
   });
+
 })();
-
-
-

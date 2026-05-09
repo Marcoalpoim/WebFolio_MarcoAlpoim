@@ -2319,7 +2319,8 @@ footer[data-v-footertext] {
 .social[data-v-footertext] {
     display: flex;
     gap: var(--padding);
-    grid-area: social
+    grid-area: social;
+    font-size: 2.6rem;
 }
 
 @media only screen and (max-width: 599px) {
@@ -2383,10 +2384,11 @@ footer[data-v-footertext] {
     }
 }
 
-.copyright[data-v-footertext] {
+.copyright {
     grid-area: copyright;
-    justify-self: flex-end
-}
+        justify-self: flex-end;
+        font-size: 2.6rem;
+    }
 
 @media only screen and (max-width: 599px) {
     .copyright[data-v-footertext] {
