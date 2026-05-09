@@ -43,9 +43,9 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./styles/style.css" />
-  <link rel="stylesheet" href="./styles/style_cards.css" />
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
+  <link rel="stylesheet" href="./styles/style_cards.css" /> 
+<link rel="stylesheet" href="https://use.typekit.net/nrf8ylf.css" crossorigin>
+  
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -94,7 +94,7 @@
       <div class="bar"></div>
       <a href="./index.html" aria-current="page">
         <span><span>Marco Alpoim</span></span></a>
-      <a href="./index.html#about" class="location"><span><span>About</span></span></a>
+      <a href="./index.html#about" class="cv"><span><span>Curriculum</span></span></a>
       <a href="mailto:marco.alpoim@live.com.pt" class="email"><span><span>Email</span></span></a>
       <button id="openMenu" role="button" aria-haspopup="menu" aria-label="Open navigation menu" aria-expanded="false" class="hamburger">
         <span aria-hidden="true">
@@ -110,8 +110,8 @@
       </button>
     </header>
 
-    <div id="menuContainer" role="dialog" aria-label="Navigation menu" aria-modal="true" hidden>
-      <div class="menu">
+  <div id="menuContainer" role="dialog" aria-label="Navigation menu" aria-modal="true">  
+    <div class="menu">
         <button class="close-btn" id="closeMenu" aria-label="Close navigation menu">
           <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
@@ -179,6 +179,25 @@
 
     <div class="index">
       <main id="main-content" data-v-cardsmain="">
+
+        <!-- Pizzainator React,js  
+        <a href="./projects/00-pizzainator/" target="_blank" rel="noopener noreferrer" scale="2" type="featured" class="card" style="color: #fff" data-v-cardsinfo="" data-v-cardsmain="" bright="true">
+          <p class="label" data-v-cardsinfo="">Special Project</p>
+          <div class="meta" data-v-cardsinfo="">
+            <p class="title" data-v-cardsinfo="">Road Accident Game 2.0</p>
+            <p class="year" data-v-cardsinfo="">2023</p>
+            <div class="infoBtn-container" data-v-cardsinfo="">
+              <p class="infoBtn" data-v-cardsinfo="">
+                <svg width="25" height="25" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <path d="M0.675318 7.84315L0.675318 6.4907L11.4153 6.4907L6.68178 1.75713L7.63645 0.802462L14.0009 7.16692L7.63645 13.5314L6.68178 12.5767L11.4153 7.84315L0.675318 7.84315Z" fill="white"></path>
+                </svg>
+              </p>
+            </div>
+          </div>
+          <div class="image" data-v-cardsinfo="">
+            <video src="./projects/RoadGame/gamepreview.mp4" playsinline muted autoplay loop preload="none" aria-label="Road Accident Game 2.0 preview" class="img" data-v-cardsinfo="" width="800" height="500"></video>
+          </div>
+        </a>-->
 
         <!-- Telepizza -->
         <a scale="2" type="large" class="card" data-v-cardsinfo="" data-v-cardsmain="" href="./projects/01-telepizza/">
@@ -495,8 +514,7 @@
         <div class="paragraph contentslider" data-v-abouttext="" data-v-cardsmain="">
           <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
             <p>
-              Hi, I'm Marco Alpoim — a multidisciplinary designer with a
-              background in Communication Design and Visual Arts. Over the
+              Hi, I'm Marco Alpoim — a multidisciplinary designer with a background in Communication Design and Visual Arts. Over the
               past five years, I've specialized in Digital Design, Web
               Development, UX/UI, User-Centered Design, Branding, and
               Editorial Design, often within cultural and creative contexts.
@@ -508,7 +526,7 @@
             </p>
           </div>
         </div>
-
+ 
         <div id="about-education" class="paragraph card" data-v-abouttext2="" data-v-cardsmain=""
           style="padding-top: 0 !important">
           <div class="paragraph-wrapper-image">
@@ -588,7 +606,7 @@
             <div class="content-software" style="text-indent: 0%">Visual Arts (Painting, sculptures &amp; more);</div>
           </div>
         </div>
-
+ 
         <div id="livework" ontouchmove="" class="wip" style="background-color: #e2001a; --projects: 1" data-v-cardstext="" data-v-cardsmain="">
           <p class="label" data-v-cardstext="">Live</p>
           <div class="projects" data-v-cardstext="">
@@ -709,31 +727,10 @@
           <span>2025</span>
         </p>
       </footer>
-
-      <div class="inspiration">
-        <p>WEBFOLIO INSPIRED BY @marvinschwaibold</p>
-      </div>
+ 
     </div>
   </div>
-
-  <!-- Skip link style (add to your CSS if not already present) -->
-  <style>
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: #222;
-      color: #fff;
-      padding: 8px 16px;
-      z-index: 9999;
-      font-size: 14px;
-      text-decoration: none;
-      border-radius: 0 0 4px 0;
-    }
-    .skip-link:focus {
-      top: 0;
-    }
-  </style>
+ 
 
   <script defer src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="scripts/script.js"></script>

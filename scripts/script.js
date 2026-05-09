@@ -46,8 +46,8 @@ window.addEventListener("load", () => {
 
 // ── Sticky header + scroll-remove chevron ──────────────────────────────────
 const header = document.querySelector("header");
-const sticky = header.offsetTop;
 let hasScrolled = false;
+const STICKY_THRESHOLD = 10; 
 
 window.addEventListener("scroll", () => {
   if (!hasScrolled) {
@@ -56,8 +56,8 @@ window.addEventListener("scroll", () => {
     hasScrolled = true;
   }
 
-  header.classList.toggle("sticky", window.pageYOffset > sticky);
-});
+  header.classList.toggle("sticky", window.scrollY > STICKY_THRESHOLD);
+}, { passive: true });
 
 
 // ── Scramble intro animation ───────────────────────────────────────────────
@@ -127,26 +127,18 @@ function startIntro() {
 
   if (!menu || !openBtn) return;
 
-  function openMenu() {
-    menu.classList.add("open");
-    if (index)  index.style.filter  = "blur(90px)";
-    if (navBar) navBar.style.filter = "blur(90px)";
-
-    // accessibility
-    openBtn.setAttribute("aria-expanded", "true");
-    const menuContainer = document.getElementById("menuContainer");
-    if (menuContainer) menuContainer.removeAttribute("hidden");
-  }
-
-  function closeMenu() {
-    menu.classList.remove("open");
-    if (index)  index.style.filter  = "blur(0)";
-    if (navBar) navBar.style.filter = "blur(0)";
-
-    openBtn.setAttribute("aria-expanded", "false");
-    const menuContainer = document.getElementById("menuContainer");
-    if (menuContainer) menuContainer.setAttribute("hidden", "");
-  }
+function openMenu() {
+  menu.classList.add("open");
+  if (index)  index.style.filter  = "blur(90px)";
+  if (navBar) navBar.style.filter = "blur(90px)";
+  openBtn.setAttribute("aria-expanded", "true");
+}
+function closeMenu() {
+  menu.classList.remove("open");
+  if (index)  index.style.filter  = "blur(0)";
+  if (navBar) navBar.style.filter = "blur(0)";
+  openBtn.setAttribute("aria-expanded", "false");
+}
 
   openBtn.addEventListener("click", () => setTimeout(openMenu, 10));
 
@@ -167,20 +159,35 @@ function startIntro() {
   const cards = document.querySelectorAll(".card");
   if (!cards.length) return;
 
-  function revealCards() {
-    if (window.scrollY < 10) return;
-    const triggerBottom = window.innerHeight;
+  let scrollStarted = false;
 
-    cards.forEach(card => {
-      const cardTop = card.getBoundingClientRect().top;
-      card.classList.toggle("visible", cardTop < triggerBottom);
-    });
-  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!scrollStarted) return; // do nothing until user scrolls
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    }
+  );
 
-  window.addEventListener("scroll", revealCards, { passive: true });
-  revealCards();
+  cards.forEach(card => observer.observe(card));
+
+  window.addEventListener("scroll", () => {
+    if (scrollStarted) return;
+    scrollStarted = true;
+
+    // re-check all cards now that scroll has started
+    observer.disconnect();
+    cards.forEach(card => observer.observe(card));
+  }, { passive: true });
+
 })();
-
 
 // ── Slide-in observer for .contentslider ──────────────────────────────────
 (function () {
