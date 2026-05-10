@@ -42,7 +42,7 @@
     --outline-radius: 1.7rem;
     --gap: 1rem;
     --row-gap: 5rem;
-    --max-width: 1440px;
+    --max-width: 1200px;
     --header-height: 5rem;
     --padding-top: 5rem;
     --padding-bottom: 3rem
@@ -552,7 +552,7 @@ main[data-v-cardsmain] {
 
 @media only screen and (max-width: 768px) {
     main[data-v-cardsmain] {
-        gap: 2rem 1rem;
+        gap: 1rem 1rem;
    }
 }
 
@@ -1496,7 +1496,7 @@ footer[data-v-cardsmain] {
     font-weight: 800;
     letter-spacing: 1px;
     line-height: 1;
-    padding: 0 2rem;
+    padding: 0 0rem;
     text-align: left;
     text-indent: 10%;
     text-transform: uppercase;
@@ -1514,8 +1514,7 @@ footer[data-v-cardsmain] {
     text-align: left;
     color: #ffff;
 }
-[data-v-abouttext2] .content-title {
-    text-indent: 70%;
+[data-v-abouttext2] .content-title { 
      font-family: "Formula Condensed",Helvetica,Arial,sans-serif;
     font-size: 2rem;
     font-style: normal;
@@ -1523,7 +1522,7 @@ footer[data-v-cardsmain] {
     letter-spacing: 1px;
     line-height: 1;
     padding: 0 2rem;
-    text-align: left;
+    text-align: right;
     color: #ffff;
 }
 [data-v-abouttext2] .content-subtitle {
