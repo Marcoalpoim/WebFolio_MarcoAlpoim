@@ -128,15 +128,11 @@ function startIntro() {
   if (!menu || !openBtn) return;
 
 function openMenu() {
-  menu.classList.add("open");
-  if (index)  index.style.filter  = "blur(90px)";
-  if (navBar) navBar.style.filter = "blur(90px)";
+  menu.classList.add("open"); 
   openBtn.setAttribute("aria-expanded", "true");
 }
 function closeMenu() {
-  menu.classList.remove("open");
-  if (index)  index.style.filter  = "blur(0)";
-  if (navBar) navBar.style.filter = "blur(0)";
+  menu.classList.remove("open");  
   openBtn.setAttribute("aria-expanded", "false");
 }
 

@@ -700,8 +700,7 @@ nav a:nth-child(3) {
     grid-area: social;
 }
 @media only screen and (max-width: 599px) {
-    .social {
-        align-self: flex-end;
+    .social { 
         flex-direction: column;
         gap: 1em;
     }
@@ -2067,10 +2066,11 @@ p[data-v-cardstext] {
 .recognition[data-v-cardstext2] {
     grid-gap: var(--row-gap);
     color: var(--color-secondary);
-    display: grid;
+    display: flex;
     gap: var(--row-gap);
     grid-column: span 2;
-    position: relative
+    position: relative;
+    flex-direction: column;
 }
 
 @media only screen and (min-width: 600px) {

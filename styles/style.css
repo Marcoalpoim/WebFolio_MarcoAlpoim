@@ -312,11 +312,13 @@ header.sticky .bar {
   grid-template-rows: 1fr auto 1fr 2rem;
   touch-action: none;
   position: fixed;
-  top: -200%;
-  right: 5%;
+  top: 0;   
+  transform: translate(-50%, -105%);
+  left: 50%;
   width: 90%;
   height: 100dvh;
   background-color: rgb(255 255 255 / 35%);
+  -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   padding: var(--padding) calc(var(--padding) + var(--safe-area-inset-right)) var(--padding) calc(var(--padding) + var(--safe-area-inset-left));
   box-shadow: inset -20px -19rem 20rem 0 rgb(255 255 255 / 55%);
@@ -326,21 +328,19 @@ header.sticky .bar {
   border: 1px solid #ffffff;
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
-  transition: box-shadow 3s cubic-bezier(0.19, 1, 0.22, 1),
-    top 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+              box-shadow 3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .menu:hover {
   box-shadow: inset -15px 20rem 20rem 0 rgb(255 255 255 / 55%);
-  transition: box-shadow 3s cubic-bezier(0.19, 1, 0.22, 1),
-    top 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+              box-shadow 3s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
+ 
 .menu.open {
-  top: -1%;
-  /* Moves into view when open */
+transform: translate(-50%, 0%);
 }
-
 @media only screen and (max-width: 768px) {
   .menu {
     right: 0%;
@@ -871,7 +871,7 @@ body {
   position: relative;
   width: 100%;
   padding: 5%;
-  overflow: hidden;
+overflow-x: hidden;
 }
 
 .stacked-cards P {
@@ -901,7 +901,9 @@ body {
   border-radius: 8px;
   box-shadow: 0 3px 6px 0px #333;
   list-style: none;
-  width: 65%;
+height: 100%;
+    width: auto;
+    max-width: 500px;
   position: absolute;
   left: 50%;
   transition: 0.5s ease transform;
