@@ -5,7 +5,7 @@
   font-family: "Formula Condensed";
   font-style: normal;
   font-weight: 700;
-  src: url(../font/FormulaCondensed-Bold.woff2) format("woff2"),
+  src: url(../font/FormulaCondensed-Bold.woff2) format("woff2"), 
     url(../font/FormulaCondensed-Bold.woff) format("woff");
 }
 
@@ -14,8 +14,7 @@
 }
 
 * {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+  box-sizing: border-box; 
 }
 
 /* Loader Styling */
@@ -110,6 +109,8 @@
   background-size: 320px 320px;
   opacity: 0.8;
   animation: noise 1s steps(8, end) infinite both;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 @keyframes noise {
@@ -198,14 +199,14 @@ header.sticky {
   display: flex;
   align-items: center;
   background-color: #5b5b5b73;
+  -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
   color: white;
   border-radius: 50rem;
   border: 1px solid #ffffff78;
-
-  transition: 1s all cubic-bezier(0.19, 1, 0.55, 1.25),
-    opacity 3s cubic-bezier(0.19, 1, 0.22, 1),
-    transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+ 
+  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+ 
 }
 
 #about {
@@ -316,26 +317,31 @@ header.sticky .bar {
   transform: translate(-50%, -105%);
   left: 50%;
   width: 90%;
-  height: 100dvh;
-  background-color: rgb(255 255 255 / 35%);
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
+  height: 90dvh;
+   background-color: rgba(161, 161, 161, 1);
   padding: var(--padding) calc(var(--padding) + var(--safe-area-inset-right)) var(--padding) calc(var(--padding) + var(--safe-area-inset-left));
-  box-shadow: inset -20px -19rem 20rem 0 rgb(255 255 255 / 55%);
+ 
   color: var(--color-primary);
   z-index: 100;
   row-gap: 1rem;
   border: 1px solid #ffffff;
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
-              box-shadow 3s cubic-bezier(0.19, 1, 0.22, 1);
+transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
+.menu::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.15));
+  pointer-events: none;
+  z-index: -1;
+}
 .menu:hover {
-  box-shadow: inset -15px 20rem 20rem 0 rgb(255 255 255 / 55%);
-  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
-              box-shadow 3s cubic-bezier(0.19, 1, 0.22, 1);
+ 
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        
 }
  
 .menu.open {
@@ -608,6 +614,7 @@ color: white;
   font-size: 18px;
   /* border: none; */
   outline: none;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border: 1px solid white;
   border-radius: 50px;

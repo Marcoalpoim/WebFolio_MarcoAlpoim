@@ -86,20 +86,31 @@ window.onbeforeunload = () => window.scrollTo(0, 0);
 
 
   // ── Fade & slide animations ──────────────────────────────────────────────
-  function initPageAnimations() {
-    document.body?.classList.add("show");
+function initPageAnimations() {
+  document.body?.classList.add("show");
 
-    document.getElementById("fadeDiv")?.classList.add("fade-up");
-    document.getElementById("fadeDiv2")?.classList.add("fade-up2");
-    document.getElementById("slide-down")?.classList.add("slidedownbanner");
+  document.getElementById("fadeDiv")?.classList.add("fade-up");
+  document.getElementById("fadeDiv2")?.classList.add("fade-up2");
+  document.getElementById("slide-down")?.classList.add("slidedownbanner");
 
-    timeouts.push(
-      setTimeout(() => {
-        document.getElementById("fadeDiv2")?.classList.add("visible");
-      }, 10)
-    );
-  }
+  timeouts.push(
+    setTimeout(() => {
+      document.getElementById("fadeDiv2")?.classList.add("visible");
+    }, 10)
+  );
 
+  // ── Marquee fix ──────────────────────────────────────────────────────────
+  timeouts.push(
+    setTimeout(() => {
+      document.querySelectorAll(".marquee-animation img").forEach(img => {
+        img.classList.add("animated");
+      });
+      document.querySelectorAll(".marquee-animation2 img").forEach(img => {
+        img.classList.add("animated2");
+      });
+    }, 100)
+  );
+}
 
   // ── Smooth scroll ────────────────────────────────────────────────────────
   function initSmoothScroll() {

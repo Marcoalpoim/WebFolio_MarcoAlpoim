@@ -212,10 +212,9 @@ function closeMenu() {
     btn.style.display = window.scrollY > 20 ? "block" : "none";
   }, { passive: true });
 
-  btn.addEventListener("click", () => {
-    // Smooth scroll to top — works without jQuery
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+btn.addEventListener("click", () => {
+  lenis.scrollTo(0);
+});
 })();
 
 
@@ -279,3 +278,27 @@ window.addEventListener("pageshow", e => {
     document.body.style.display = "";
   }
 });
+
+
+// ── Smooth inertial scroll (Lenis) ─────────────────────────────────────────
+(function () {
+  const lenis = new Lenis({
+    duration: 1.4,          // how long the momentum lasts — increase for more glide
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
+    smoothWheel: true,
+    smoothTouch: false,     // keep native momentum on touch — feels more natural
+    wheelMultiplier: 1,
+    touchMultiplier: 1.5,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Keep your existing passive scroll listeners working with Lenis
+  lenis.on("scroll", () => {
+    window.dispatchEvent(new Event("scroll"));
+  });
+})();
