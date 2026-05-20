@@ -1,3 +1,5 @@
+/*style.css*/
+
 @import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap);
  
 
@@ -460,7 +462,7 @@ color: white;
 }
 
 
-@media only screen and (max-width: 590px) {
+@media only screen and (max-width: 600px) {
 
   #intro-section {
  

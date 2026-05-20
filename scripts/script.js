@@ -47,16 +47,17 @@ window.addEventListener("load", () => {
 // ── Sticky header + scroll-remove chevron ──────────────────────────────────
 const header = document.querySelector("header");
 let hasScrolled = false;
-const STICKY_THRESHOLD = 10; 
+const STICKY_THRESHOLD = 10;
 
 window.addEventListener("scroll", () => {
-  if (!hasScrolled) {
-    const divToRemove = document.getElementById("onscrollremove");
-    if (divToRemove) divToRemove.remove();
-    hasScrolled = true;
+  const y = window.scrollY;
+
+  const divToHide = document.getElementById("onscrollremove");
+  if (divToHide) {
+    divToHide.style.visibility = y > 0 ? "hidden" : "visible";
   }
 
-  header.classList.toggle("sticky", window.scrollY > STICKY_THRESHOLD);
+  header.classList.toggle("sticky", y > STICKY_THRESHOLD);
 }, { passive: true });
 
 
@@ -150,41 +151,54 @@ function closeMenu() {
 })();
 
 
-// ── Reveal cards on scroll ─────────────────────────────────────────────────
 (function () {
   const cards = document.querySelectorAll(".card");
   if (!cards.length) return;
 
-  let scrollStarted = false;
+  let observer;
+  let atTop = true;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (!scrollStarted) return; // do nothing until user scrolls
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
-    }
-  );
-
-  cards.forEach(card => observer.observe(card));
-
-  window.addEventListener("scroll", () => {
-    if (scrollStarted) return;
-    scrollStarted = true;
-
-    // re-check all cards now that scroll has started
-    observer.disconnect();
+  function createObserver() {
+    if (observer) observer.disconnect();
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px 0px 0px" }
+    );
     cards.forEach(card => observer.observe(card));
-  }, { passive: true });
+  }
+
+function onScroll(y) {
+  if (y < 50 && !atTop) {
+    atTop = true;
+    cards.forEach(card => {
+      card.classList.add("reset");
+      card.classList.remove("visible");
+      requestAnimationFrame(() => card.classList.remove("reset"));
+    });
+    if (observer) observer.disconnect();
+  }
+  if (y > 50 && atTop) {
+    atTop = false;
+    createObserver();
+  }
+}
+
+  // Use Lenis if available, fallback to window scroll
+  window.addEventListener("load", () => {
+    if (window.lenis) {
+      window.lenis.on("scroll", ({ scroll }) => onScroll(scroll));
+    } else {
+      window.addEventListener("scroll", () => onScroll(window.scrollY), { passive: true });
+    }
+  });
 
 })();
-
 // ── Slide-in observer for .contentslider ──────────────────────────────────
 (function () {
   const observer = new IntersectionObserver(

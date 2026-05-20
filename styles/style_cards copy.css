@@ -554,7 +554,7 @@ main[data-v-cardsmain] {
 
 @media only screen and (max-width: 768px) {
     main[data-v-cardsmain] {
-        gap: 2rem 2rem;
+        gap: 1rem 1rem;
    }
 }
 
@@ -706,11 +706,6 @@ nav a:nth-child(3) {
         flex-direction: column;
         gap: 1em;
     }
-  
-.card[type=featured] .image[data-v-cardsinfo] {
- 
-    padding-top: 67% !important;
-}
 }
 
 .copyright {
@@ -885,13 +880,12 @@ footer[data-v-cardsmain] {
 
 .card video[data-v-cardsinfo] {
     border-radius: var(--radius);
-    height: 100%;
-    max-height: max-content;
+    height: 105%;
     left: 0%;
     -o-object-fit: cover;
     object-fit: cover;
     position: absolute;
-    top: 0%;
+    top: -2.5%;
     transition: .5s transform cubic-bezier(0.19, 1, 0.4, 1.35);
     width: 100%;
 }
@@ -1047,7 +1041,7 @@ footer[data-v-cardsmain] {
 
 @media only screen and (min-width: 600px) {
     .card[type=featured] .image[data-v-cardsinfo] {
-        padding-top:62%
+        padding-top:58%
     }
 }
 
@@ -1178,7 +1172,19 @@ footer[data-v-cardsmain] {
 
 @media only screen and (max-width: 768px) {
   
-  
+    .card[type=featured] .infoBtn-container[data-v-cardsinfo] {
+        position: relative;
+        width: auto;
+        height: 100%;
+        padding: 3% !important;
+        border: 1px solid white;
+        background-color: rgba(255, 255, 255, 0);
+        border-radius: 50rem;
+        transition: all 1s cubic-bezier(0.19,1,0.22,1);
+        overflow: hidden;
+    
+ 
+    }  
     .card[type=featured] .infoBtn[data-v-cardsinfo] {
         color: rgb(0, 0, 0) !important;
     }  
@@ -1203,23 +1209,7 @@ footer[data-v-cardsmain] {
       }
 }
 
-@media only screen and (max-width: 590px) {
-  
-    .card[type=featured] .infoBtn-container[data-v-cardsinfo] {
-        position: relative;
-        width: auto;
-        height: 100%;
-        padding: 3% !important;
-        border: 1px solid white;
-        background-color: rgba(255, 255, 255, 0);
-        border-radius: 50rem;
-        transition: all 1s cubic-bezier(0.19,1,0.22,1);
-        overflow: hidden;
-    
- 
-    }  
-   
-}
+
 .quote[data-v-quote] {
     align-items: center;
     color: var(--color-secondary);
