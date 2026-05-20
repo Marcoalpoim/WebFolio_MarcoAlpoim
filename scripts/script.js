@@ -203,19 +203,7 @@ function closeMenu() {
 })();
 
 
-// ── Go-to-top button ───────────────────────────────────────────────────────
-(function () {
-  const btn = document.getElementById("myBtn-gotop");
-  if (!btn) return;
-
-  window.addEventListener("scroll", () => {
-    btn.style.display = window.scrollY > 20 ? "block" : "none";
-  }, { passive: true });
-
-btn.addEventListener("click", () => {
-  lenis.scrollTo(0);
-});
-})();
+ 
 
 
 // ── Typewriter effect ──────────────────────────────────────────────────────
@@ -287,14 +275,13 @@ window.addEventListener("pageshow", e => {
     /Instagram|FBAN|FBAV|FB_IAB|TikTok|BytedanceWebview|musical_ly/i.test(ua);
 
   if (isInAppBrowser) {
-    // Native scroll only — in-app browsers can't handle Lenis
     window.addEventListener("scroll", () => {
       window.dispatchEvent(new Event("scroll"));
     }, { passive: true });
     return;
   }
 
-  const lenis = new Lenis({
+  window.lenis = new Lenis({
     duration: 1.4,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
@@ -304,12 +291,35 @@ window.addEventListener("pageshow", e => {
   });
 
   function raf(time) {
-    lenis.raf(time);
+    window.lenis.raf(time);
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
 
-  lenis.on("scroll", () => {
+  // ── Guard against infinite loop ──────────────────────────────────────────
+  let isLenisScrolling = false;
+  window.lenis.on("scroll", () => {
+    if (isLenisScrolling) return;
+    isLenisScrolling = true;
     window.dispatchEvent(new Event("scroll"));
+    isLenisScrolling = false;
+  });
+})();
+
+// ── Go-to-top button ───────────────────────────────────────────────────────
+(function () {
+  const btn = document.getElementById("myBtn-gotop");
+  if (!btn) return;
+
+  window.addEventListener("scroll", () => {
+    btn.style.display = window.scrollY > 20 ? "block" : "none";
+  }, { passive: true });
+
+  btn.addEventListener("click", () => {
+    if (window.lenis) {
+      window.lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   });
 })();
