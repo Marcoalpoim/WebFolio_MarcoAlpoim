@@ -280,16 +280,25 @@ window.addEventListener("pageshow", e => {
 });
 
 
-// ── Smooth inertial scroll (Lenis) ─────────────────────────────────────────
 (function () {
-  // Detect touch-primary devices and bail out — let native scroll handle it
   const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
   if (isTouchDevice) {
-    // Still fire scroll events so your other listeners keep working
     window.addEventListener("scroll", () => {
       window.dispatchEvent(new Event("scroll"));
     }, { passive: true });
     return;
+  }
+
+  // ── Reserve scrollbar width BEFORE Lenis hides the native one ──────────
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+  if (scrollbarWidth > 0) {
+    document.documentElement.style.setProperty(
+      "--scrollbar-width",
+      `${scrollbarWidth}px`
+    );
+    document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
+    document.documentElement.style.overflowX = "hidden";
   }
 
   const lenis = new Lenis({
