@@ -282,11 +282,23 @@ window.addEventListener("pageshow", e => {
 
 // ── Smooth inertial scroll (Lenis) ─────────────────────────────────────────
 (function () {
+  const ua = navigator.userAgent || "";
+  const isInAppBrowser =
+    /Instagram|FBAN|FBAV|FB_IAB|TikTok|BytedanceWebview|musical_ly/i.test(ua);
+
+  if (isInAppBrowser) {
+    // Native scroll only — in-app browsers can't handle Lenis
+    window.addEventListener("scroll", () => {
+      window.dispatchEvent(new Event("scroll"));
+    }, { passive: true });
+    return;
+  }
+
   const lenis = new Lenis({
-    duration: 1.4,          // how long the momentum lasts — increase for more glide
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
+    duration: 1.4,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    smoothTouch: false,     // keep native momentum on touch — feels more natural
+    smoothTouch: false,
     wheelMultiplier: 1,
     touchMultiplier: 1.5,
   });
@@ -297,7 +309,6 @@ window.addEventListener("pageshow", e => {
   }
   requestAnimationFrame(raf);
 
-  // Keep your existing passive scroll listeners working with Lenis
   lenis.on("scroll", () => {
     window.dispatchEvent(new Event("scroll"));
   });

@@ -171,7 +171,8 @@ header {
   left: calc(var(--padding) + var(--safe-area-inset-left));
   position: sticky;
   top: calc(2rem + var(--safe-area-inset-top));
-
+border-radius: 50rem;
+  border: 1px solid #ffffff00;
   width: 90%;
   gap: 20%;
   z-index: 2;
@@ -206,8 +207,6 @@ header.sticky {
   color: white;
   border-radius: 50rem;
   border: 1px solid #ffffff78;
- 
-  transition: background-color 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
  
 }
 
@@ -379,7 +378,7 @@ transform: translate(-50%, 0%);
 .close-btn svg {
   width: 34px;
   height: 34px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 /* Intro styles */
