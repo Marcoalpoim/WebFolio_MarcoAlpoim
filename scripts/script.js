@@ -280,32 +280,13 @@ window.addEventListener("pageshow", e => {
 });
 
 
+// ── Smooth inertial scroll (Lenis) ─────────────────────────────────────────
 (function () {
-  const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-  if (isTouchDevice) {
-    window.addEventListener("scroll", () => {
-      window.dispatchEvent(new Event("scroll"));
-    }, { passive: true });
-    return;
-  }
-
-  // ── Reserve scrollbar width BEFORE Lenis hides the native one ──────────
-  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-  if (scrollbarWidth > 0) {
-    document.documentElement.style.setProperty(
-      "--scrollbar-width",
-      `${scrollbarWidth}px`
-    );
-    document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
-    document.documentElement.style.overflowX = "hidden";
-  }
-
   const lenis = new Lenis({
-    duration: 1.4,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    duration: 1.4,          // how long the momentum lasts — increase for more glide
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
     smoothWheel: true,
-    smoothTouch: false,
+    smoothTouch: false,     // keep native momentum on touch — feels more natural
     wheelMultiplier: 1,
     touchMultiplier: 1.5,
   });
@@ -316,6 +297,7 @@ window.addEventListener("pageshow", e => {
   }
   requestAnimationFrame(raf);
 
+  // Keep your existing passive scroll listeners working with Lenis
   lenis.on("scroll", () => {
     window.dispatchEvent(new Event("scroll"));
   });
