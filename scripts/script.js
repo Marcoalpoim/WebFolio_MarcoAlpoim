@@ -173,23 +173,33 @@ function closeMenu() {
     cards.forEach(card => observer.observe(card));
   }
 
-function onScroll(y) {
-  if (y < 50 && !atTop) {
-    atTop = true;
-    cards.forEach(card => {
-      card.classList.add("reset");
-      card.classList.remove("visible");
-      requestAnimationFrame(() => card.classList.remove("reset"));
-    });
-    if (observer) observer.disconnect();
+  function showAllCards() {
+    cards.forEach(card => card.classList.add("visible"));
   }
-  if (y > 50 && atTop) {
-    atTop = false;
-    createObserver();
-  }
-}
 
-  // Use Lenis if available, fallback to window scroll
+  function onScroll(y) {
+    if (y < 50 && !atTop) {
+      atTop = true;
+      cards.forEach(card => {
+        card.classList.add("reset");
+        card.classList.remove("visible");
+        requestAnimationFrame(() => card.classList.remove("reset"));
+      });
+      if (observer) observer.disconnect();
+    }
+    if (y > 50 && atTop) {
+      atTop = false;
+      createObserver();
+    }
+  }
+
+  // ✅ If user came back via browser history, show cards immediately
+  const navEntry = performance.getEntriesByType("navigation")[0];
+  if (navEntry && navEntry.type === "back_forward") {
+    showAllCards();
+    atTop = false; // prevent reset logic from hiding them again
+  }
+
   window.addEventListener("load", () => {
     if (window.lenis) {
       window.lenis.on("scroll", ({ scroll }) => onScroll(scroll));

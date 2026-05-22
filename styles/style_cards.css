@@ -885,8 +885,7 @@ footer[data-v-cardsmain] {
 
 .card video[data-v-cardsinfo] {
     border-radius: var(--radius);
-    height: 100%;
-    max-height: max-content;
+    height: 100%; 
     left: 0%;
     -o-object-fit: cover;
     object-fit: cover;
