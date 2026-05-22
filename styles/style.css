@@ -392,8 +392,8 @@ transform: translate(-50%, 0%);
   visibility: visible;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 50dvh;
+  align-items: flex-end;
+  height: 55dvh;
   margin-top: 10dvh;
 }
  
@@ -466,8 +466,9 @@ color: white;
 
   #intro-section {
  
-   height:25dvh;
-    margin-top: 15dvh;
+   height:50dvh;
+    margin-top: 0dvh;
+    align-items: flex-end;
 }
 .banner { 
     border-radius: 5px;

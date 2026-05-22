@@ -193,11 +193,11 @@ function closeMenu() {
     }
   }
 
-  // ✅ If user came back via browser history, show cards immediately
+ 
   const navEntry = performance.getEntriesByType("navigation")[0];
   if (navEntry && navEntry.type === "back_forward") {
     showAllCards();
-    atTop = false; // prevent reset logic from hiding them again
+    atTop = false;   
   }
 
   window.addEventListener("load", () => {
