@@ -150,16 +150,17 @@ function closeMenu() {
   });
 })();
 
-
 (function () {
-  const cards = document.querySelectorAll(".card");
-  if (!cards.length) return;
-
   let observer;
   let atTop = true;
 
-  function createObserver() {
+  function getRevealElements() {
+    return document.querySelectorAll(".card, #filters-root");
+  }
+
+  function createObserver(elements) {
     if (observer) observer.disconnect();
+
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -168,46 +169,88 @@ function closeMenu() {
           }
         });
       },
-      { threshold: 0, rootMargin: "0px 0px 0px 0px" }
+      {
+        threshold: 0,
+        rootMargin: "0px 0px 0px 0px"
+      }
     );
-    cards.forEach(card => observer.observe(card));
+
+    elements.forEach(element => observer.observe(element));
   }
 
-  function showAllCards() {
-    cards.forEach(card => card.classList.add("visible"));
+  function showAllElements(elements) {
+    elements.forEach(element => {
+      element.classList.add("visible");
+    });
   }
 
   function onScroll(y) {
+    const elements = getRevealElements();
+    if (!elements.length) return;
+
     if (y < 50 && !atTop) {
       atTop = true;
-      cards.forEach(card => {
-        card.classList.add("reset");
-        card.classList.remove("visible");
-        requestAnimationFrame(() => card.classList.remove("reset"));
+
+      elements.forEach(element => {
+        element.classList.add("reset");
+        element.classList.remove("visible");
+
+        requestAnimationFrame(() => {
+          element.classList.remove("reset");
+        });
       });
+
       if (observer) observer.disconnect();
     }
+
     if (y > 50 && atTop) {
       atTop = false;
-      createObserver();
+      createObserver(elements);
     }
   }
 
- 
-  const navEntry = performance.getEntriesByType("navigation")[0];
-  if (navEntry && navEntry.type === "back_forward") {
-    showAllCards();
-    atTop = false;   
+  function initCardReveal() {
+    const elements = getRevealElements();
+    if (!elements.length) return;
+
+    const navEntry = performance.getEntriesByType("navigation")[0];
+
+    if (navEntry && navEntry.type === "back_forward") {
+      showAllElements(elements);
+      atTop = false;
+      return;
+    }
+
+    if (window.scrollY > 50) {
+      atTop = false;
+      createObserver(elements);
+    } else {
+      atTop = true;
+
+      if (observer) observer.disconnect();
+    }
   }
+
+  document.addEventListener(
+    "projects:rendered",
+    initCardReveal
+  );
 
   window.addEventListener("load", () => {
+    initCardReveal();
+
     if (window.lenis) {
-      window.lenis.on("scroll", ({ scroll }) => onScroll(scroll));
+      window.lenis.on("scroll", ({ scroll }) => {
+        onScroll(scroll);
+      });
     } else {
-      window.addEventListener("scroll", () => onScroll(window.scrollY), { passive: true });
+      window.addEventListener(
+        "scroll",
+        () => onScroll(window.scrollY),
+        { passive: true }
+      );
     }
   });
-
 })();
 // ── Slide-in observer for .contentslider ──────────────────────────────────
 (function () {
@@ -330,20 +373,64 @@ window.addEventListener("pageshow", e => {
   });
 })();
 
-// ── Go-to-top button ───────────────────────────────────────────────────────
+ // ── Go-to-top button ───────────────────────────────────────────────────────
 (function () {
   const btn = document.getElementById("myBtn-gotop");
   if (!btn) return;
 
+  const ring = btn.querySelector(".scroll-top-btn__ring-progress");
+  const circumference = 125.66; // 2 * PI * r(20)
+  const showThreshold = 20;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let ticking = false;
+
+  function updateButton() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+
+    if (ring) {
+      ring.style.strokeDashoffset = circumference - scrollPercent * circumference;
+    }
+
+    btn.classList.toggle("is-visible", scrollTop > showThreshold);
+    ticking = false;
+  }
+
   window.addEventListener("scroll", () => {
-    btn.style.display = window.scrollY > 20 ? "block" : "none";
+    if (!ticking) {
+      window.requestAnimationFrame(updateButton);
+      ticking = true;
+    }
   }, { passive: true });
 
+  updateButton(); // correct state on reload mid-scroll
+
   btn.addEventListener("click", () => {
+    btn.classList.add("is-animating");
+
     if (window.lenis) {
       window.lenis.scrollTo(0);
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
     }
+
+    setTimeout(() => btn.classList.remove("is-animating"), 600);
+
+    sendTracking("Scroll Top Button", "click", "scroll to top");
   });
+
+  function sendTracking(eventCategory, eventAction, eventLabel) {
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: "ab_tasty_interaction",
+        eventCategory,
+        eventAction,
+        eventLabel,
+      });
+    }
+  }
 })();
+
+ 

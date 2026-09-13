@@ -85,10 +85,13 @@
 }
 
 html {
+    
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    
     background-color: #222;
     background-color: var(--color-primary);
     box-sizing: border-box;
@@ -557,6 +560,13 @@ main[data-v-cardsmain] {
         gap: 2rem 2rem;
    }
 }
+ 
+.wrap{
+  grid-column:1/-1;  
+}
+ 
+
+
 
 /*
 .menu>* {
@@ -857,7 +867,7 @@ footer[data-v-cardsmain] {
     position: relative;
     width: 100%;
     will-change: transform;
-    border: 1px solid rgb(255 255 255 / 64%);
+    border: 0px solid rgb(255 255 255 / 64%);
     display: block; 
     height: 100%; 
     transition-duration: .5s; 
@@ -915,11 +925,11 @@ footer[data-v-cardsmain] {
     justify-content: space-between;
     position: relative
 }
-.card .meta[data-v-cardsinfo]  .infoBtn-container[data-v-cardsinfo] {
+.card .meta[data-v-cardsinfo] .infoBtn-container[data-v-cardsinfo] {
     align-items: center;
     display: flex;
     gap: var(--gap);
-    padding: 7%;
+    padding: 20px;
     grid-column: span 2;
     justify-content: center;
     position: relative;
@@ -927,7 +937,7 @@ footer[data-v-cardsmain] {
 
 .card .meta[data-v-cardsinfo]  .infoBtn-container[data-v-cardsinfo]:hover {
 
-    padding: 7% 15%;
+    padding: 20px 15%;
  
 }
 
@@ -984,7 +994,7 @@ footer[data-v-cardsmain] {
     border: 1px solid rgba(255, 255, 255, 0.808);
     background-color: rgba(0, 0, 0, 0);
     border-radius: 2rem;
-    box-shadow: inset 20px -9rem 20rem 0 rgb(255 255 255 / 55%);
+    box-shadow: inset 20px -9rem 6rem 0 rgb(255 255 255 / 55%);
     grid-column: span 2;
     grid-template-areas: "image image" "meta meta";
     grid-template-columns: repeat(2,1fr);
@@ -992,17 +1002,23 @@ footer[data-v-cardsmain] {
     padding: var(--border);
 }
 
+
 .card[type=featured][data-v-cardsinfo]:hover {
    border-radius: 2rem;
-   box-shadow: inset 17px 20rem 20rem 0 rgb(255 255 255 / 55%);
+   box-shadow: inset 17px 20rem 10rem 0 rgb(255 255 255 / 55%);
  transition: box-shadow 3s cubic-bezier(0.19,1,0.22,1);
  
 }
 @media only screen and (max-width: 768px) {
+   .card[type=featured] .meta[data-v-cardsinfo] {
+ align-items: center;
+}
+
+
     .card[type=featured][data-v-cardsinfo] {
         --border:1rem;
         border-radius: 1rem;
-        box-shadow: inset 20px 15rem 20rem 0 rgb(255 255 255 / 55%);
+      box-shadow: inset -3px 20rem 12rem 0 rgb(255 255 255 / 55%)
     }
     .card[type=featured][data-v-cardsinfo]:hover {
         border-radius: 1rem;
@@ -1012,7 +1028,7 @@ footer[data-v-cardsmain] {
 
 @media only screen and (min-width: 600px) {
     .card[type=featured][data-v-cardsinfo] {
-        --border:2rem;
+        --border:1rem;
     
     }
 
@@ -1208,7 +1224,7 @@ footer[data-v-cardsmain] {
         position: relative;
         width: auto;
         height: 100%;
-        padding: 3% !important;
+        padding: 5px 20px !important;
         border: 1px solid white;
         background-color: rgba(255, 255, 255, 0);
         border-radius: 50rem;
@@ -1219,6 +1235,44 @@ footer[data-v-cardsmain] {
     }  
    
 }
+
+
+
+/* =========================================================
+   CARD IMAGE HOVER ZOOM
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .card .image {
+      position: relative;
+    overflow: hidden;
+    
+  }
+
+  .card .image img,
+  .card .image video {
+    transform: scale(1);
+    transition:
+      transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    will-change: transform;
+      display: block;
+  width: 105%;
+  height: 105%;
+
+  position: absolute;
+  inset: -2.5%;
+
+  object-fit: cover;
+  }
+
+  .card:hover .image img,
+  .card:hover .image video {
+    transform: scale(1.08);
+  }
+
+}
+
 .quote[data-v-quote] {
     align-items: center;
     color: var(--color-secondary);
@@ -1546,6 +1600,7 @@ footer[data-v-cardsmain] {
     padding: 5px 2rem;
     text-align: left;
     color: #ffff;
+    text-indent: 0%;
 }
 [data-v-abouttext2] .content-subtitle a{
     height: .84em;
