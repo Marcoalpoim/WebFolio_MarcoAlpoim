@@ -1388,6 +1388,62 @@ footer[data-v-cardsmain] {
     white-space: inherit
 }
 
+.paragraph[data-v-abouttext2] .paragraph-wrapper,
+.paragraph2[data-v-abouttext2] .paragraph-wrapper2 {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+    grid-column: span 2;
+    margin: 0rem;
+    padding: 4rem 0;
+    text-align: center;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+        0 30px 70px -25px rgba(0, 0, 0, 0.65);
+    transition: transform .5s var(--ease-out-quint), box-shadow .5s var(--ease-out-quint), border-color .5s ease;
+}
+
+.paragraph[data-v-abouttext2] .paragraph-wrapper::before,
+.paragraph2[data-v-abouttext2] .paragraph-wrapper2::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(252, 252, 252, 0.281), rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.4));
+   -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
+}
+
+.paragraph[data-v-abouttext2] .paragraph-wrapper:hover,
+.paragraph2[data-v-abouttext2] .paragraph-wrapper2:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.24);
+   
+        overflow: visible;
+}
+
+.paragraph[data-v-abouttext2] .paragraph-wrapper:hover::before,
+.paragraph2[data-v-abouttext2] .paragraph-wrapper2:hover::before {
+    opacity: 1;
+}
+
+
+
+
 .paragraph[data-v-abouttext] {
     align-items: center;
     color: var(--color-secondary);
@@ -1416,7 +1472,7 @@ footer[data-v-cardsmain] {
 }
 
 .paragraph[data-v-abouttext2] {
-    overflow: hidden;
+   
     color: var(--color-secondary);
     display: flex;
     flex-direction: column;
@@ -1445,35 +1501,11 @@ footer[data-v-cardsmain] {
 }
 
 
-.paragraph[data-v-abouttext2] .paragraph-wrapper
-{
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0);
-    color: var(--color-secondary);
-    display: flex;
-    flex-direction: column;
-    grid-column: span 2;
-    margin: 0rem;
-    padding: 4rem 0;
-    text-align: center;
-    border-radius: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.808);
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-    transition: box-shadow 3s cubic-bezier(0.19,1,0.22,1);
-}
-
-
-.paragraph[data-v-abouttext2] .paragraph-wrapper:hover {
-   border-radius: 2rem;
-   box-shadow: inset 20px -9rem 20rem 0 rgb(255 255 255 / 20%);
- transition: box-shadow 3s cubic-bezier(0.19,1,0.22,1);
  
-}
+ 
 
 .paragraph2[data-v-abouttext2] {
-    overflow: hidden;
+ 
     color: var(--color-secondary);
     display: flex;
     flex-direction: column;
@@ -1500,31 +1532,7 @@ footer[data-v-cardsmain] {
     height: auto;
 }
 
-.paragraph2[data-v-abouttext2] .paragraph-wrapper2
-{
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0);
-    color: var(--color-secondary);
-    display: flex;
-    flex-direction: column;
-    grid-column: span 2;
-    margin: 0rem;
-    padding: 4rem 0;
-    text-align: center;
-    border-radius: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.808);
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-    transition: box-shadow 3s cubic-bezier(0.19,1,0.22,1);
-}
-.paragraph2[data-v-abouttext2] .paragraph-wrapper2:hover {
-    border-radius: 2rem;
-    box-shadow: inset 20px -9rem 20rem 0 rgb(255 255 255 / 20%);
-  transition: box-shadow 3s cubic-bezier(0.19,1,0.22,1);
-  
- }
-
+ 
 
 @media only screen and (min-width: 600px) {
     .paragraph[data-v-abouttext2] {

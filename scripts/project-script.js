@@ -1,7 +1,8 @@
 // project-script.js — fully vanilla JS (jQuery removed)
 
-window.onbeforeunload = () => window.scrollTo(0, 0);
-
+ window.addEventListener("pageshow", () => {
+  window.scrollTo(0, 0);
+});
 (function () {
   const timeouts = [];
 
