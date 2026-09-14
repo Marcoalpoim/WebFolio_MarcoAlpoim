@@ -1,13 +1,7 @@
-// projects-data.js
-// Load with: <script type="module" src="./render-projects.js"></script>
-// (render-projects.js imports this file directly — see below)
-//
-// One object per project — replaces the 27 hand-written <a class="card"> blocks.
-// category is a starting guess based on the titles — recategorize freely, it's a
-// one-line edit per project, not a structural change.
+ 
 
 export const projects = [
-  { id: "pizzainator", href: "./projects/00-pizzainator/", external: true,
+  { id: "pizzainator", href: "./individual-project-page.html?id=pizzainator", external: true,
     scale: 2, type: "featured", bright: true, label: "Special Project",
     title: "PIZZA INATOR APP", year: 2026, category: "uxui",
     media: "video", src: "./projects/00-pizzainator/pizzainator-app.mp4",
