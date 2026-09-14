@@ -392,9 +392,8 @@ transform: translate(-50%, 0%);
   visibility: visible;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  height: 55dvh;
-  margin-top: 10dvh;
+  align-items: center;
+ height: calc(100dvh - 10dvh); 
 }
  
 .row-intro {
