@@ -169,14 +169,15 @@ header {
   color: #ffff;
   display: flex;
   height: var(--header-height);
-  justify-content: space-around;
+ justify-content: center;
   left: calc(var(--padding) + var(--safe-area-inset-left));
   position: sticky;
   top: calc(2rem + var(--safe-area-inset-top));
 border-radius: 50rem;
   border: 1px solid #ffffff00;
-  width: 90%;
-  gap: 20%;
+ width: fit-content;
+  gap: 100px;
+  padding: 0 20px;
   z-index: 2;
   flex-direction: row;
   align-content: center;
@@ -192,14 +193,14 @@ border-radius: 50rem;
 
 header.sticky {
   top: 2.5rem;
-  justify-content: space-around;
-  width: 85%;
-  gap: 20%;
+  justify-content: center;
+width: fit-content;
+  gap: 20px;
   z-index: 2;
   flex-direction: row;
   align-content: center;
   flex-wrap: wrap;
-  padding: 0 2%;
+padding: 0 20px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -320,7 +321,7 @@ header.sticky .bar {
   transform: translate(-50%, -105%);
   left: 50%;
   width: 90%;
-  height: 90dvh;
+  height: fit-content;
    background-color: rgba(161, 161, 161, 1);
   padding: var(--padding) calc(var(--padding) + var(--safe-area-inset-right)) var(--padding) calc(var(--padding) + var(--safe-area-inset-left));
  
@@ -332,6 +333,8 @@ header.sticky .bar {
   border-bottom-right-radius: 3rem;
 transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
+
+
 .menu::after {
   content: "";
   position: absolute;
@@ -350,6 +353,25 @@ transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 .menu.open {
 transform: translate(-50%, 0%);
 }
+
+#menuContainer:has(.menu) .menu-overlay {
+  opacity: 0;
+  pointer-events: auto;
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 65%);
+  z-index: 5;
+}
+
+#menuContainer:has(.menu.open) .menu-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+ 
 @media only screen and (max-width: 768px) {
   .menu {
     right: 0%;
@@ -404,6 +426,7 @@ transform: translate(-50%, 0%);
   overflow: hidden;
 }
 
+
  
 .word-wrapper {
   display: inline-flex;
@@ -436,6 +459,75 @@ color: white;
   transform: translateY(0);
   opacity: 1;
 }
+.row-break { display: none; }
+
+@media (max-width: 640px) {
+  #intro-section {
+    height: auto;
+    min-height: calc(100dvh - 10dvh);
+    padding: 0 1rem;
+    justify-content: flex-start;
+  }
+
+  .intro-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.22em;
+    row-gap: 0.04em;
+    width: 100%;
+  }
+
+  .row-intro { display: contents; }
+
+  .word-wrapper {
+    font-size: clamp(2.2rem, 11.5vw, 5rem);
+    margin-top: 0;
+    overflow: hidden;      /* takes over the clipping row-intro used to do */
+    line-height: 1;
+  }
+
+  .word-gap { padding-right: 0; }   /* the 35px gap is now column-gap */
+
+  .banner-box {
+    flex: 0 0 auto;
+    height: clamp(30px, 9vw, 56px);
+    width: auto;
+    aspect-ratio: 8 / 5;
+    overflow: hidden;
+  }
+
+  .banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .row-break {
+    display: block;
+    flex: 0 0 100%;
+    height: 0;
+    margin: 0;
+  }
+
+  /* IMG DIGITAL */
+  .row-intro:nth-child(1) .banner-box                { order: 1; }
+  .row-intro:nth-child(1) .word-wrapper:nth-of-type(1) { order: 2; }
+  .row-break:nth-of-type(1)                          { order: 3; }
+  /* DESIGNER AND */
+  .row-intro:nth-child(1) .word-wrapper:nth-of-type(2) { order: 4; }
+  .row-intro:nth-child(2) .word-wrapper:nth-of-type(1) { order: 5;padding-left: 10px; }
+  .row-break:nth-of-type(2)                          { order: 6; }
+  /* IMG FRONT-END */
+  .row-intro:nth-child(2) .banner-box                { order: 7; }
+  .row-intro:nth-child(2) .word-wrapper:nth-of-type(2) { order: 8; }
+  .row-break:nth-of-type(3)                          { order: 9; }
+  /* DEVELOPER IMG */
+  .row-intro:nth-child(3) .word-wrapper:nth-of-type(1) { order: 10; }
+  .row-intro:nth-child(3) .banner-box                { order: 11; }
+}
 
  
 /* BANNER WRAPPER */
@@ -463,26 +555,21 @@ color: white;
 
 @media only screen and (max-width: 600px) {
 
-  #intro-section {
  
-   height:50dvh;
-    margin-top: 0dvh;
-    align-items: flex-end;
-}
 .banner { 
     border-radius: 5px;
 }
   .row-intro { 
-    height: 5rem; 
+    height: 4rem; 
 }
 .word-wrapper { 
-  font-size: 5rem;
+  font-size: 7rem;
   line-height: 1;
   margin-top: 10px;
 }
 .banner-box {
     width: 0rem;
-    height: 4rem; 
+    height: 7rem; 
     padding: 0 1rem;
     border-radius: 10px;
 }

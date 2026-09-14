@@ -75,23 +75,13 @@
 </head>
 
 <body>
+  
  
-<div id="bg-fx" aria-hidden="true">
-  <span class="blob blob--a"></span>
-  <span class="blob blob--b"></span>
-</div>
-
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-<div id="mouse-light" aria-hidden="true"></div>
+ 
   <div id="preloader">
     <img src="./images/loader.gif" alt="Loading" width="80" height="80" />
   </div>
-  <!--
-  <div class="main-wrapper">
-    <div class="noise-wrapper">
-      <div class="noise"></div>
-    </div>
-  </div>-->
+  
 
   <button type="button" id="myBtn-gotop" class="scroll-top-btn" aria-label="Voltar ao topo">
     <svg class="scroll-top-btn__ring" viewBox="0 0 44 44" aria-hidden="true" focusable="false">
@@ -105,8 +95,7 @@
 
   <div id="container content">
 
-    <header id="main_navBar">
-      <div class="bar"></div>
+    <header id="main_navBar"> 
       <a href="./index.html" aria-current="page">
         <span><span>Marco Alpoim</span></span></a>
       <a href="./index.html#about" class="cv"><span><span>Curriculum</span></span></a>
@@ -162,9 +151,11 @@
           <span>All rights reserved</span>
           <span>2026</span>
         </p>
+        
       </div>
+    <div class="menu-overlay"></div>
     </div>
-
+  
     <!-- INTRO -->
     <section class="intro" id="intro-section" aria-label="Introduction">
       <div class="intro-container">
@@ -191,6 +182,9 @@
               width="800" height="500" loading="lazy" />
           </div>
         </div>
+         <span class="row-break" aria-hidden="true"></span>
+  <span class="row-break" aria-hidden="true"></span>
+  <span class="row-break" aria-hidden="true"></span>
       </div>
     </section>
     <!-- END INTRO -->
@@ -243,17 +237,23 @@
           </div>
 
           <div class="paragraph-wrapper">
-            <div class="content-title">ABOUT ME &#8592;</div>
-            <div class="content-subtitle">Marco André Gomes Alpoim</div>
-            <div class="content-subtitle">Sintra, Lisboa, Portugal</div>
-            <div class="content-subtitle">Portuguese - Native <br> English - Intermediate (B1) <br>
-              Spanish - Elementary (A2)</div>
-            <div class="content-subtitle">Currently pursuing a postgraduate degree in UX/UI at THE STARTER HUB.</div>
-            <div
-              style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.411); padding: 1rem 5.5rem 0rem; margin: 3rem 5rem;">
+            <div class="content-title">ABOUT ME <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="18" height="18" viewBox="0 0 24 24" style="opacity: 1; transform: rotate(180deg); color: rgb(255, 255, 255);"><path fill="currentColor" d="M8 8.4V16q0 .425-.288.713T7 17t-.712-.288T6 16V6q0-.425.288-.712T7 5h10q.425 0 .713.288T18 6t-.288.713T17 7H9.4l8.9 8.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"></path></svg></div>
+            <div class="content-subtitle">
+              <p>Marco André Gomes Alpoim</p>
+              <p>Sintra, Lisboa, Portugal</p>
+              <p>Portuguese - Native <br> English - Intermediate (B1) <br>
+              Spanish - Elementary (A2)</p>              
+              
+              <p> <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"></path></svg> <a href="https://www.linkedin.com/in/marcoalpoim/" target="_blank" rel="noopener noreferrer">/in/marcoalpoim/</a></span> </p> 
+             <p> <span> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24" ><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"></path></svg><a href="https://github.com/Marcoalpoim" target="_blank" rel="noopener noreferrer">/github.com/Marcoalpoim</a></span> </p> 
+           
+           
             </div>
+          
+            
+            <div class="breakline-dashed"></div>
 
-            <div class="content-title">EXPERIENCE &#8592;</div>
+            <div class="content-title">EXPERIENCE <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="18" height="18" viewBox="0 0 24 24" style="opacity: 1; transform: rotate(180deg); color: rgb(255, 255, 255);"><path fill="currentColor" d="M8 8.4V16q0 .425-.288.713T7 17t-.712-.288T6 16V6q0-.425.288-.712T7 5h10q.425 0 .713.288T18 6t-.288.713T17 7H9.4l8.9 8.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"></path></svg></div>
             <div class="content-data">2024 - Now</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
               <p>Multidisciplinary Design Specialist / UX·UI & Front-End | Telepizza Portugal</p>
@@ -274,7 +274,7 @@
               editorial, digital illustration.
             </div>
 
-            <div class="content-data">2021 - 2022 <span>2 years</span></div>
+            <div class="content-data">2021 - 2022</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
               <p>Intern — Digital Marketing & Communication | ANYTHINK</p>
             </div>
@@ -284,11 +284,12 @@
 
 
           </div>
+          
         </div>
 
         <div id="about-experience" class="paragraph2 card" data-v-abouttext2="" data-v-cardsmain="">
           <div class="paragraph-wrapper2">
-            <div class="content-title">SKILLS &#8592;</div>
+            <div class="content-title">SKILLS <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="18" height="18" viewBox="0 0 24 24" style="opacity: 1; transform: rotate(180deg); color: rgb(255, 255, 255);"><path fill="currentColor" d="M8 8.4V16q0 .425-.288.713T7 17t-.712-.288T6 16V6q0-.425.288-.712T7 5h10q.425 0 .713.288T18 6t-.288.713T17 7H9.4l8.9 8.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"></path></svg></div>
 
             <div class="content-data">2018 – 2026</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
@@ -308,30 +309,11 @@
             </div>
             <div class="content-subtitle">Photoshop; Illustrator; InDesign; After Effects;
               Premiere Pro; Blender;</div>
+            
+          
+          <div class="breakline-dashed"></div>
 
-            <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
-              <p>Platforms</p>
-            </div>
-            <div class="content-subtitle">Salesforce Commerce Cloud; Marketing Cloud; S4D
-              Software;</div>
-
-
-            <!--   
-            <div class="content-title">SOFTWARE &#8592;</div>
-            <div class="content-software" ><span style="width: 15rem">Ilustrator:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">Photoshop:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">VS Code:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">Figma:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span><span class="dot-outline"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">After Effects:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span><span class="dot-outline"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">PremierePro:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span><span class="dot-outline"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">Indesign:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span><span class="dot-outline"></span><span class="dot-outline"></span></div>
-            <div class="content-software" ><span style="width: 15rem">Blender:</span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot-outline"></span><span class="dot-outline"></span><span class="dot-outline"></span><span class="dot-outline"></span></div>
--->
-            <div
-              style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.411); padding: 1rem 5.5rem 0rem; margin: 3rem 5rem;">
-            </div>
-
-            <div class="content-title">EDUCATION &#8592;</div>
+            <div class="content-title">EDUCATION <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="18" height="18" viewBox="0 0 24 24" style="opacity: 1; transform: rotate(180deg); color: rgb(255, 255, 255);"><path fill="currentColor" d="M8 8.4V16q0 .425-.288.713T7 17t-.712-.288T6 16V6q0-.425.288-.712T7 5h10q.425 0 .713.288T18 6t-.288.713T17 7H9.4l8.9 8.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"></path></svg></div>
             <!--  
             <div class="content-data" >2014-2018</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext=""><p>12th grade in Visual Arts.</p></div>
@@ -344,11 +326,7 @@
             <div class="content-subtitle">Higher School of Education of Lisbon — <a href="https://www.eselx.ipl.pt/"
                 target="_blank" rel="noopener noreferrer">https://www.eselx.ipl.pt/</a>
             </div>
-            <!--
-            <div class="content-data" >2020 – 2021</div>
-            <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext=""><p>Candidate for the Students' Association 2020/2021, in the Image/Communication department.</p></div>
-            <div class="content-subtitle" >Higher School of Education of Lisbon — <a href="https://www.eselx.ipl.pt/" target="_blank" rel="noopener noreferrer">https://www.eselx.ipl.pt/</a></div>
- -->
+   
             <div class="content-data">2021 – 2024</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
               <p>Master's in Communication Design.</p>
@@ -366,11 +344,9 @@
               — <a href="https://www.iade.europeia.pt/" target="_blank"
                 rel="noopener noreferrer">https://www.iade.europeia.pt/</a></div>
 
-            <div
-              style="border-bottom: 0.5px dashed rgba(255, 255, 255, 0.411); padding: 1rem 5.5rem 0rem; margin: 3rem 5rem;">
-            </div>
+            <div class="breakline-dashed"></div>
 
-            <div class="content-title">NOTABLE PARTICIPATIONS &#8592;</div>
+            <div class="content-title">NOTABLE PARTICIPATIONS <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="18" height="18" viewBox="0 0 24 24" style="opacity: 1; transform: rotate(180deg); color: rgb(255, 255, 255);"><path fill="currentColor" d="M8 8.4V16q0 .425-.288.713T7 17t-.712-.288T6 16V6q0-.425.288-.712T7 5h10q.425 0 .713.288T18 6t-.288.713T17 7H9.4l8.9 8.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"></path></svg></div>
 
             <div class="content-data">2019</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
@@ -384,12 +360,13 @@
             </div>
             <div class="content-subtitle">Espaço Artes, Lisbon Polytechnic Institute.</div>
 
+            <!-- 
             <div class="content-data">2021</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
               <p>FRONTEIRAS Exhibition.</p>
             </div>
             <div class="content-subtitle">Municipal Gallery of Castelo de Pirescoxe.</div>
-
+-->
 
             <div class="content-data">2023</div>
             <div class="content" data-v-abouttextfont="" data-v-cardsmain="" data-v-abouttext="">
@@ -408,7 +385,7 @@
                 data-color="#4f3739" class="project" data-v-cardstext="">
                 <p class="title" data-v-cardstext="">Telepizza Portugal</p>
                 <p class="subtitle" data-v-cardstext="">UX/UI Designer &amp; Frontend Developer / Digital designer</p>
-                <p class="year" data-v-cardstext="">2024-26</p>
+                <p class="year" data-v-cardstext="">2024-NOW</p>
                 <p class="index" data-v-cardstext="">01</p>
               </a>
               <div class="thumbnail" style="--rotation: -9.147990266787398deg; --offset: 0" data-v-cardstext="">
@@ -422,20 +399,7 @@
         </div>
 
         <div class="recognition" data-v-cardstext2="" data-v-cardsmain="">
-          <div class="awards" data-v-cardstext2="">
-            <p class="label" data-v-cardstext2="">Notable Participations</p>
-            <ul class="content" data-v-cardstext2="">
-              <li data-v-cardstext2=""><span>1x - Participation in the exhibition ARQUIVO POÉTICO DO LUGAR at the
-                  Coruche Biennial, Percursos com Arte.</span></li>
-              <li data-v-cardstext2=""><span>1x - Participation in the FRONTEIRAS exhibition at the Castelo de
-                  Pirescouxe Municipal Gallery</span></li>
-              <li data-v-cardstext2=""><span>1x - Participation in the SCIENTIFIC DRAWING/ILLUSTRATION exhibition at the
-                  Arts Space of the Polytechnic Institute of Lisbon.</span></li>
-              <li data-v-cardstext2=""><span>1x - Finalist in Red Bull's national illustration competition, Red Bull
-                  DOODLE ART</span></li>
-            </ul>
-            <p class="index" data-v-cardstext2="">01</p>
-          </div>
+       
 
           <div class="partnerships" data-v-cardstext2="">
             <p class="label" data-v-cardstext2="">Partnerships</p>
@@ -453,6 +417,8 @@
               <ul data-v-cardstext2="">
                 <li data-v-cardstext2=""><a href="https://www.linkedin.com/in/marcoalpoim/" target="_blank"
                     rel="noopener noreferrer">Linkedin</a></li>
+                 <li data-v-cardstext2=""><a href="https://github.com/Marcoalpoim" target="_blank"
+                    rel="noopener noreferrer">GitHub</a></li>
                 <li data-v-cardstext2=""><a href="https://www.behance.net/marco_alpoim" target="_blank"
                     rel="noopener noreferrer">Behance</a></li>
                 <li data-v-cardstext2=""><a href="https://www.instagram.com/marcoalpoim/" target="_blank"
@@ -474,13 +440,11 @@
 
       <footer data-v-footertext="" data-v-cardsmain="">
         <div class="social" data-v-footertext="">
-          <p><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/marcoalpoim/">Instagram</a>
-          </p>
-          <p><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/marcoalpoim/">Linkedin</a>
-          </p>
-          <p><a target="_blank" rel="noopener noreferrer" href="https://www.behance.net/marco_alpoim">Behance</a></p>
-          <p><a target="_blank" rel="noopener noreferrer"
-              href="https://marcoalpoim.github.io/Marco-Alpoim/portefolio2024marcoalpoim.pdf">Portfolio 2023</a></p>
+        
+          <p><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/marcoalpoim/">Linkedin</a></p>
+          <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/Marcoalpoim">GITHUB</a></p>
+          <p><a target="_blank" rel="noopener noreferrer" href="https://marcoalpoim.github.io/Marco-Alpoim/portefolio2024marcoalpoim.pdf">Portfolio 2023</a></p>
+         <p><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/marcoalpoim/">Instagram</a></p>
         </div>
         <p class="copyright">
           <span>All rights reserved</span>
