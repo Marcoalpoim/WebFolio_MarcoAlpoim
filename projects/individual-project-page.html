@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,189 +14,164 @@
     <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16">
 
     <!-- Keep your existing CSS -->
-    <link rel="stylesheet" href="../../styles/style_cards.css">
-    <link rel="stylesheet" href="../../styles/style-projects.css">
+    <link rel="stylesheet" href="../styles/style_cards.css">
+    <link rel="stylesheet" href="../styles/style-projectsind.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 
 <body>
+ 
 
-<div class="main-wrapper">
-    <div class="noise-wrapper">
-        <div class="noise"></div>
-    </div>
-</div>
+    <div id="container content">
 
-<div id="container">
+        <!-- HEADER -->
+        <header id="fadeDiv2">
+            <div class="bar"></div>
 
-    <!-- HEADER -->
-    <header id="fadeDiv2">
-        <div class="bar"></div>
+            <a href="../index.html" aria-current="page">
+                <span><span>Marco Alpoim</span></span>
+            </a>
 
-        <a href="../index.html" aria-current="page">
-            <span><span>Marco Alpoim</span></span>
-        </a>
+            <a href="../index.html#about" class="cv">
+                <span><span>Curriculum</span></span>
+            </a>
 
-        <a href="../index.html#about" class="cv">
-            <span><span>Curriculum</span></span>
-        </a>
+            <a href="mailto:marco.alpoim@live.com.pt" class="email">
+                <span><span>Email</span></span>
+            </a>
 
-        <a href="mailto:marco.alpoim@live.com.pt" class="email">
-            <span><span>Email</span></span>
-        </a>
-
-        <button
-            id="openMenu"
-            role="button"
-            aria-haspopup="menu"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-            class="hamburger">
-            <span>
+            <button id="openMenu" role="button" aria-haspopup="menu" aria-label="Open navigation menu"
+                aria-expanded="false" class="hamburger">
                 <span>
-                    <svg width="180" height="98" viewBox="0 0 180 98" fill="none"
-                         xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <g id="hamburger">
-                            <rect y="20" width="180" height="10"></rect>
-                            <rect y="45" width="180" height="10"></rect>
-                            <rect y="70" width="180" height="10"></rect>
-                        </g>
-                    </svg>
+                    <span>
+                        <svg width="180" height="98" viewBox="0 0 180 98" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <g id="hamburger">
+                                <rect y="20" width="180" height="10"></rect>
+                                <rect y="45" width="180" height="10"></rect>
+                                <rect y="70" width="180" height="10"></rect>
+                            </g>
+                        </svg>
+                    </span>
                 </span>
-            </span>
-        </button>
-    </header>
-
-    <!-- MENU -->
-    <div id="menuContainer">
-        <div class="menu">
-
-            <button class="close-btn" id="closeMenu" aria-label="Close menu">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2"
-                     stroke-linecap="round"
-                     stroke-linejoin="round"
-                     class="feather feather-x">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
             </button>
+        </header>
 
-            <nav>
-                <a href="../index.html">
-                    <span>/Home</span><small>01</small>
-                </a>
+        <!-- MENU -->
+        <div id="menuContainer">
+            <div class="menu">
 
-                <a href="../index.html#livework">
-                    <span>/MORE</span><small>02</small>
-                </a>
+                <button class="close-btn" id="closeMenu" aria-label="Close menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
 
-                <a href="../index.html#about">
-                    <span>/About</span><small>03</small>
-                </a>
-            </nav>
+                <nav>
+                    <a href="../index.html">
+                        <span>/Home</span><small>01</small>
+                    </a>
 
-            <p class="location">
-                2725 - Tapada Das Mercês<br>
-                <a href="mailto:marco.alpoim@live.com.pt">EMAIL</a>
-            </p>
+                    <a href="../index.html#livework">
+                        <span>/MORE</span><small>02</small>
+                    </a>
 
-            <div class="social">
-                <p><a target="_blank" href="https://www.instagram.com/marcoalpoim/">Instagram</a></p>
-                <p><a target="_blank" href="https://www.linkedin.com/in/marcoalpoim/">Linkedin</a></p>
-                <p><a target="_blank" href="https://www.behance.net/marco_alpoim">Behance</a></p>
-                <p><a target="_blank" href="https://marcoalpoim.github.io/Marco-Alpoim/">Portfolio 2023</a></p>
+                    <a href="../index.html#about">
+                        <span>/About</span><small>03</small>
+                    </a>
+                </nav>
+
+                <p class="location">
+                    2725 - Tapada Das Mercês<br>
+                    <a href="mailto:marco.alpoim@live.com.pt">EMAIL</a>
+                </p>
+
+                <div class="social">
+                    <p><a rel="noopener" target="_blank" href="https://www.instagram.com/marcoalpoim/">Instagram</a></p>
+                    <p><a rel="noopener" target="_blank" href="https://www.linkedin.com/in/marcoalpoim/">Linkedin</a>
+                    </p>
+                    <p><a rel="noopener" target="_blank" href="https://www.behance.net/marco_alpoim">Behance</a></p>
+                    <p><a rel="noopener" target="_blank" href="https://marcoalpoim.github.io/Marco-Alpoim/">Portfolio
+                            2023</a></p>
+                </div>
+
+                <p class="copyright">
+                    <span>All rights reserved</span>
+                    <span id="menuYear"></span>
+                </p>
+
             </div>
+        </div>
 
-            <p class="copyright">
-                <span>All rights reserved</span>
-                <span id="menuYear"></span>
-            </p>
+
+        <!-- ONE REUSABLE PROJECT TEMPLATE -->
+        <div class="page">
+
+            <main>
+
+                <div class="hero">
+                    <img id="projectHero" class="slidedownbanner" src="" alt="">
+                </div>
+
+                <div class="info">
+
+                    <div class="gobackbtn">
+                        <button id="goBackButton">&#8592; Go Back</button>
+                    </div>
+
+                    <div id="fadeDiv">
+                        <div class="staggered-project-container">
+                            <h2 id="projectTitle1" class="staggered-project" data-stagger> </h2>
+                            <h2 id="projectTitle2" class="staggered-project" data-stagger> </h2>
+                           <h2 id="projectTitle3" class="staggered-project" data-stagger> </h2>
+                           <h2 id="projectTitle4" class="staggered-project" data-stagger> </h2>
+                         <h2 id="projectTitle5" class="staggered-project" data-stagger> </h2>
+                           <h2 id="projectTitle6" class="staggered-project" data-stagger> </h2>
+                         <h2 id="projectTitle7" class="staggered-project" data-stagger> </h2>
+                         
+                        </div>
+                    </div>
+
+                    <div id="projectLinks" class="links"></div>
+
+                    <div id="projectDescription" class="content content--description"></div>
+
+                </div>
+
+                <div id="projectGallery" class="gallery"></div>
+
+            </main>
+
+
+            <!-- ONE FOOTER FOR EVERY PROJECT -->
+            <footer>
+                <div class="social">
+
+                    <p><a target="_blank" rel="noopener noreferrer"
+                            href="https://www.linkedin.com/in/marcoalpoim/">Linkedin</a></p>
+                    <p><a target="_blank" rel="noopener noreferrer" href="https://github.com/Marcoalpoim">GITHUB</a></p>
+                    <p><a target="_blank" rel="noopener noreferrer"
+                            href="https://marcoalpoim.github.io/Marco-Alpoim/portefolio2024marcoalpoim.pdf">Portfolio
+                            2023</a></p>
+                    <p><a target="_blank" rel="noopener noreferrer"
+                            href="https://www.instagram.com/marcoalpoim/">Instagram</a></p>
+                </div>
+
+                <p class="copyright">
+                    <span>All rights reserved</span>
+                    <span id="footerYear"></span>
+                </p>
+            </footer>
 
         </div>
     </div>
 
 
-    <!-- ONE REUSABLE PROJECT TEMPLATE -->
-    <div class="page">
-
-        <main>
-
-            <div class="hero">
-                <img id="projectHero" src="" alt="">
-            </div>
-
-            <div class="info">
-
-                <div class="gobackbtn">
-                    <button id="goBackButton">&#8592; Go Back</button>
-                </div>
-
-                <div id="fadeDiv">
-                    <div class="staggered-project-container">
-                        <h2
-                            id="projectTitle1"
-                            class="staggered-project"
-                            data-stagger>
-                        </h2>
-
-                        <h2
-                            id="projectTitle2"
-                            class="staggered-project"
-                            data-stagger>
-                        </h2>
-                    </div>
-                </div>
-
-                <div id="projectLinks" class="links"></div>
-
-                <div id="projectDescription" class="content content--description"></div>
-
-            </div>
-
-            <div id="projectGallery" class="gallery"></div>
-
-        </main>
-
-
-        <!-- ONE FOOTER FOR EVERY PROJECT -->
-        <footer>
-            <div class="social">
-                <p>
-                    <a target="_blank" href="https://www.instagram.com/marcoalpoim/">Instagram</a>
-                </p>
-
-                <p>
-                    <a target="_blank" href="https://www.linkedin.com/in/marcoalpoim/">Linkedin</a>
-                </p>
-
-                <p>
-                    <a target="_blank" href="https://www.behance.net/marco_alpoim">Behance</a>
-                </p>
-
-                <p>
-                    <a target="_blank"
-                       href="https://marcoalpoim.github.io/Marco-Alpoim/portefolio2024marcoalpoim.pdf">
-                        Portfolio 2023
-                    </a>
-                </p>
-            </div>
-
-            <p class="copyright">
-                <span>All rights reserved</span>
-                <span id="footerYear"></span>
-            </p>
-        </footer>
-
-    </div>
-</div>
-
-
-<script src="../scripts/projects-script.js"></script>
-
+    <script src="../../scripts/individual-project-page.js"></script>
+    <script src="../../scripts/project-script.js"></script>
 </body>
+
 </html>

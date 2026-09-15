@@ -92,7 +92,7 @@ function startIntro() {
       letters,
       { y: "-1.2em", opacity: 1 },
       {
-        y: "0em",
+        y: ".5em",
         duration: 1,
         ease: "cubic-bezier(0.86, 0.2, 0.11, 1.19)",
         stagger: 0.065,

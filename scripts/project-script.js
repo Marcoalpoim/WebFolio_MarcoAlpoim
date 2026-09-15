@@ -36,10 +36,12 @@
     };
 
     const animateText = container => {
-      container.querySelectorAll("span").forEach((span, i) => {
-        setTimeout(() => span.classList.add("visible"), i * 100);
-      });
-    };
+  setTimeout(() => {
+    container.querySelectorAll("span").forEach((span, i) => {
+      setTimeout(() => span.classList.add("visible"), i * 100);
+    });
+  }, 500);  
+};
 
     const replaceText = (container, target) => {
       container.querySelectorAll("span").forEach((span, i) => {

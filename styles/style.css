@@ -467,8 +467,9 @@ color: white;
     min-height: calc(100dvh - 10dvh);
     padding: 0 1rem;
     justify-content: flex-start;
+   
   }
-
+      
   .intro-container {
     display: flex;
     flex-wrap: wrap;
@@ -563,13 +564,14 @@ color: white;
     height: 4rem; 
 }
 .word-wrapper { 
-  font-size: 7rem;
+  font-size: 8rem;
   line-height: 1;
-  margin-top: 10px;
+margin-top: 5px;
+        margin-bottom: -5px;
 }
 .banner-box {
     width: 0rem;
-    height: 7rem; 
+    height: 6rem; 
     padding: 0 1rem;
     border-radius: 10px;
 }
