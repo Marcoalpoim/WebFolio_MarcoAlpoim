@@ -1,7 +1,7 @@
  
 
 export const projects = [
-  { id: "pizzainator", href: "/projects/individual-project-page.html?id=pizzainator", external: true,
+  { id: "pizzainator", href: "./projects/individual-project-page.html?id=pizzainator", external: true,
     scale: 2, type: "featured", bright: true, label: "Special Project",
     title: "PIZZA INATOR APP", year: 2026, category: "uxui",
     media: "video", src: "./projects/00-pizzainator/pizzainator-app.mp4",
