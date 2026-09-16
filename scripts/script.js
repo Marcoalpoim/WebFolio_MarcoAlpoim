@@ -1,4 +1,8 @@
-// script.js — vanilla JS (jQuery removed)
+// script js on index.html
+
+window.addEventListener("pageshow", (e) => {
+  console.log("pageshow persisted:", e.persisted);
+});
 
 window.addEventListener("load", () => {
 
@@ -433,4 +437,3 @@ window.addEventListener("pageshow", e => {
   }
 })();
 
- 

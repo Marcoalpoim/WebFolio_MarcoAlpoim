@@ -1,8 +1,13 @@
 // project-script.js — fully vanilla JS (jQuery removed)
-
- window.addEventListener("pageshow", () => {
-  window.scrollTo(0, 0);
+ 
+window.addEventListener("pageshow", (event) => {
+  if (!event.persisted) {
+    window.scrollTo(0, 0);
+  }
 });
+
+
+
 (function () {
   const timeouts = [];
 
@@ -17,10 +22,22 @@
     timeouts.forEach(clearTimeout);
     timeouts.length = 0;
   };
+ 
+  
+document.addEventListener("DOMContentLoaded", () => {
+  const goBackBtn = document.getElementById("goBackButton"); // <- confirma que é este o id certo
 
-  window.addEventListener("beforeunload", clearAllTimeouts);
+  if (!goBackBtn) return;
 
-
+  goBackBtn.addEventListener("click", () => {
+    if (window.history.length > 1) {
+      history.back();
+    } else {
+      window.location.href = "../index.html";
+    }
+  });
+});
+ 
   // ── Staggered text animation ─────────────────────────────────────────────
   function initStaggeredTextAuto() {
     const elements = document.querySelectorAll("[data-stagger]");
@@ -138,21 +155,16 @@ function initPageAnimations() {
     if (!menu || !openBtn) return;
 
     const openMenu = () => {
-      menu.classList.add("open");
-      if (index)  index.style.filter  = "blur(90px)";
-      if (navBar) navBar.style.filter = "blur(90px)";
+      menu.classList.add("open"); 
       openBtn.setAttribute("aria-expanded", "true");
       const menuContainer = document.getElementById("menuContainer");
-      if (menuContainer) menuContainer.removeAttribute("hidden");
+      //if (menuContainer) menuContainer.removeAttribute("hidden");
     };
 
     const closeMenu = () => {
-      menu.classList.remove("open");
-      if (index)  index.style.filter  = "blur(0)";
-      if (navBar) navBar.style.filter = "blur(0)";
-      openBtn.setAttribute("aria-expanded", "false");
-      const menuContainer = document.getElementById("menuContainer");
-      if (menuContainer) menuContainer.setAttribute("hidden", "");
+      menu.classList.remove("open"); 
+      openBtn.setAttribute("aria-expanded", "false"); 
+     // if (menuContainer) menuContainer.setAttribute("hidden", "");
     };
 
     openBtn.addEventListener("click", () => setTimeout(openMenu, 10));

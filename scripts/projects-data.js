@@ -1,7 +1,7 @@
  
 
 export const projects = [
-  { id: "pizzainator", href: "./projects/individual-project-page.html?id=pizzainator", external: true,
+  { id: "pizzainator", href: "./projects/individual-project-page.html?id=pizzainator",
     scale: 2, type: "featured", bright: true, label: "Special Project",
     title: "PIZZA INATOR APP", year: 2026, category: "uxui",
     media: "video", src: "./projects/00-pizzainator/pizzainator-app.mp4",
@@ -43,13 +43,13 @@ export const projects = [
     media: "image", src: "./projects/06-humanxrobots/human-x-man-pos2t.gif",
     alt: "Human x Computer — digital art project exploring the relationship between humans and machines", w: 800, h: 500 },
 
-  { id: "roadgame", href: "https://2022.fbaul-dcnm.pt/marco_alpoim/jogo_versao1/index.html", external: true,
+  { id: "roadgame", href: "https://2022.fbaul-dcnm.pt/marco_alpoim/jogo_versao1/index.html", 
     scale: 2, type: "featured", bright: true, label: "Special Project",
     title: "Road Accident Game 2.0", year: 2023, category: "uxui",
     media: "video", src: "./projects/RoadGame/gamepreview.mp4",
     alt: "Road Accident Game 2.0 preview", w: 800, h: 500 },
 
-  { id: "marsmellow", href: "./projects/individual-project-page.html?id=marshmellowvans", external: true,
+  { id: "marsmellow", href: "./projects/individual-project-page.html?id=marshmellowvans", 
     scale: 2, type: "large",
     title: "MARSMELLOW X VANS (CONCEPT)", year: 2019, category: "branding",
     media: "image", src: "./projects/07-marsmellow-project/marsmellow-box.png",
@@ -134,7 +134,7 @@ export const projects = [
     title: "ABELHA EUROPEIA", year: 2021, category: "illustration",
     media: "image", src: "./projects/21-abelha/abelha-banner.webp",
     alt: "Abelha Europeia — scientific illustration of the European bee", w: 600, h: 400 },
- { id: "livrodeartista", href: "./projects/individual-project-page.html?id=livrodeartista", external: true,
+ { id: "livrodeartista", href: "./projects/individual-project-page.html?id=livrodeartista", 
     scale: 2, type: "featured", bright: true, label: "CERTIFIED Project",
     title: "LIVRO DE ARTISTA MARCO ALPOIM", year: 2018, category: "illustration",
     media: "image", src: "./projects/18-livrodeartista/lartista-banner.png",
@@ -159,7 +159,7 @@ export const projects = [
     media: "image", src: "./projects/24-csgo/cs-banner.webp",
     alt: "Splash Art Concept for CS:GO — character and game illustration", w: 800, h: 500 },
 
-  { id: "drawings", href: "./projects/individual-project-page.html?id=realisticdrawings", external: true,
+  { id: "drawings", href: "./projects/individual-project-page.html?id=realisticdrawings", 
     scale: 2, type: "featured", bright: true, label: "OTHER PROJECTS",
     title: "BLACK AND WHITE REALISM DRAWINGS", year: "2017 - 2025", category: "illustration",
     media: "image", src: "./projects/25-drawings/drawings1.webp",

@@ -3083,22 +3083,7 @@ for (let i = 1; i <= 9; i++) {
 
   setText("#footerYear", year);
 
-  // ─────────────────────────────
-  // BACK BUTTON
-  // ─────────────────────────────
-
-  const backButton = document.getElementById("goBackButton");
-
-  if (backButton) {
-    backButton.onclick = () => {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = "../index.html";
-      }
-    };
-  }
-
+ 
   // ─────────────────────────────
   // START YOUR ORIGINAL EFFECT
   // ─────────────────────────────
@@ -3106,48 +3091,7 @@ for (let i = 1; i <= 9; i++) {
   initStaggeredTextAuto();
 }
 
-/* =========================================================
-   MENU
-   ========================================================= */
-
-function initMenu() {
-  const openButton = document.getElementById("openMenu");
-
-  const closeButton = document.getElementById("closeMenu");
-
-  const menuContainer = document.getElementById("menuContainer");
-
-  if (!openButton || !closeButton || !menuContainer) {
-    return;
-  }
-
-  /* OPEN */
-
-  openButton.addEventListener("click", () => {
-    menuContainer.classList.add("is-open");
-
-    openButton.setAttribute("aria-expanded", "true");
-  });
-
-  /* CLOSE */
-
-  closeButton.addEventListener("click", () => {
-    menuContainer.classList.remove("is-open");
-
-    openButton.setAttribute("aria-expanded", "false");
-  });
-
-  /* CLOSE WHEN CLICKING A LINK */
-
-  menuContainer.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menuContainer.classList.remove("is-open");
-
-      openButton.setAttribute("aria-expanded", "false");
-    });
-  });
-}
-
+ 
 /* =========================================================
    START
    ========================================================= */
