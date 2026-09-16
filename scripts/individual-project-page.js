@@ -288,11 +288,11 @@ const PROJECTS = {
         type: "marquee",
 
         images: [
-          "./01-telepizza/tpziimg19.png",
-          "./01-telepizza/tpziimg19.png",
-          "./01-telepizza/tpziimg19.png",
-          "./01-telepizza/tpziimg19.png",
-          "./01-telepizza/tpziimg19.png",
+          "./01-telepizza/tpziimg19.webp",
+          "./01-telepizza/tpziimg19.webp",
+          "./01-telepizza/tpziimg19.webp",
+          "./01-telepizza/tpziimg19.webp",
+          "./01-telepizza/tpziimg19.webp",
         ],
       },
 
@@ -446,8 +446,8 @@ const PROJECTS = {
         type: "marquee",
 
         images: [
-          "./01-telepizza/marqueetpz.png",
-          "./01-telepizza/marqueetpz.png",
+          "./01-telepizza/marqueetpz.webp",
+          "./01-telepizza/marqueetpz.webp",
         ],
       },
 
@@ -487,7 +487,7 @@ const PROJECTS = {
     titleRandom4: "GNIMAPP",
     titleTarget4: "MAPPING",
    
-    hero: "./02-ssam/ssam-banner.png",
+    hero: "./02-ssam/ssam-banner.webp",
 
     website: "https://marcoalpoim.github.io/Sintra-Street-Art-Mapping/",
 
@@ -532,7 +532,7 @@ const PROJECTS = {
 
         {
             type: "image",
-            src: "./02-ssam/ssam-macro.png",
+            src: "./02-ssam/ssam-macro.webp",
             size: "l"
         },
 
@@ -550,25 +550,25 @@ const PROJECTS = {
 
         {
             type: "image",
-            src: "./02-ssam/ssam-mockup1.png",
+            src: "./02-ssam/ssam-mockup1.webp",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./02-ssam/ssam-progress.png",
+            src: "./02-ssam/ssam-progress.webp",
             size: "l"
         },
 
         {
             type: "image",
-            src: "./02-ssam/ssam-mockup2.png",
+            src: "./02-ssam/ssam-mockup2.webp",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./02-ssam/ssam-mockup3.png",
+            src: "./02-ssam/ssam-mockup3.webp",
             size: "s"
         }
 
