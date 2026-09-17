@@ -1344,7 +1344,7 @@ staybox: {
     titleTarget7: "",
 
  
-    hero: "./11-staybox-project/staybox-banner2.png",
+    hero: "./11-stay-box-project/staybox-banner2.png",
 
  
     description: `
@@ -1374,19 +1374,19 @@ staybox: {
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-types.png",
+            src: "./11-stay-box-project/staybox-types.png",
             size: "l"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-versions.png",
+            src: "./11-stay-box-project/staybox-versions.png",
             size: "l"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-process.png",
+            src: "./11-stay-box-project/staybox-process.png",
             size: "l"
         },
  
@@ -1394,65 +1394,65 @@ staybox: {
             type: "marquee",
 
             images: [
-                "./11-staybox-project/marquee-staybox.png",
-                "./11-staybox-project/marquee-staybox.png",
-                "./11-staybox-project/marquee-staybox.png",
-                "./11-staybox-project/marquee-staybox.png"
+                "./11-stay-box-project/marquee-staybox.png",
+                "./11-stay-box-project/marquee-staybox.png",
+                "./11-stay-box-project/marquee-staybox.png",
+                "./11-stay-box-project/marquee-staybox.png"
             ]
         },
 
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-instamockup1.png",
+            src: "./11-stay-box-project/staybox-instamockup1.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-instamockup2.png",
+            src: "./11-stay-box-project/staybox-instamockup2.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockup3.png",
+            src: "./11-stay-box-project/staybox-mockup3.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockup4.png",
+            src: "./11-stay-box-project/staybox-mockup4.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockup5.png",
+            src: "./11-stay-box-project/staybox-mockup5.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockup6.png",
+            src: "./11-stay-box-project/staybox-mockup6.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockup7.png",
+            src: "./11-stay-box-project/staybox-mockup7.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockup8.png",
+            src: "./11-stay-box-project/staybox-mockup8.png",
             size: "s"
         },
 
         {
             type: "image",
-            src: "./11-staybox-project/staybox-mockupawards.png",
+            src: "./11-stay-box-project/staybox-mockupawards.png",
             size: "l"
         }
 
